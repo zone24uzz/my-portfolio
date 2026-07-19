@@ -12,10 +12,10 @@ const categories = [
 ];
 
 const projects = [
-  { titleKey: "projects.keyronTitle", descKey: "projects.keyronDesc", category: "Web App", tags: ["React", "TailwindCSS", "Vite"], year: "2025", link: "https://testkeyron-vifj.vercel.app/" },
-  { titleKey: "projects.velocityTitle", descKey: "projects.velocityDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://velocity-blush-gamma.vercel.app/" },
-  { titleKey: "projects.indoreTitle", descKey: "projects.indoreDesc", category: "Web App", tags: ["HTML", "TailwindCSS", "JavaScript"], year: "2025", link: "https://plant-website-tailwindcss-main.vercel.app/" },
-  { titleKey: "projects.fastfoodTitle", descKey: "projects.fastfoodDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://burger-landing-one.vercel.app/" },
+  { titleKey: "projects.keyronTitle", descKey: "projects.keyronDesc", category: "Web App", tags: ["React", "TailwindCSS", "Vite"], year: "2025", link: "https://testkeyron-vifj.vercel.app/", image: "/images/project-keyron.jpg" },
+  { titleKey: "projects.velocityTitle", descKey: "projects.velocityDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://velocity-blush-gamma.vercel.app/", image: "/images/project-velocity.jpg" },
+  { titleKey: "projects.indoreTitle", descKey: "projects.indoreDesc", category: "Web App", tags: ["HTML", "TailwindCSS", "JavaScript"], year: "2025", link: "https://plant-website-tailwindcss-main.vercel.app/", image: "/images/project-indore.jpg" },
+  { titleKey: "projects.fastfoodTitle", descKey: "projects.fastfoodDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://burger-landing-one.vercel.app/", image: "/images/project-fastfood.jpg" },
 ];
 
 export default function Projects() {

@@ -8,21 +8,21 @@ const featuredProjects = [
   {
     titleKey: "projects.keyronTitle",
     categoryKey: "projects.webApp",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+    image: "/images/project-keyron.jpg",
     link: "https://testkeyron-vifj.vercel.app/",
     tags: ["React", "TailwindCSS", "Vite"],
   },
   {
     titleKey: "projects.velocityTitle",
     categoryKey: "projects.webDesign",
-    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=500&fit=crop",
+    image: "/images/project-velocity.jpg",
     link: "https://velocity-blush-gamma.vercel.app/",
     tags: ["HTML", "CSS"],
   },
   {
     titleKey: "projects.indoreTitle",
     categoryKey: "projects.webApp",
-    image: "https://images.unsplash.com/photo-1463320898484-0ac4b9d0de1f?w=800&h=500&fit=crop",
+    image: "/images/project-indore.jpg",
     link: "https://plant-website-tailwindcss-main.vercel.app/",
     tags: ["HTML", "TailwindCSS", "JavaScript"],
   },
@@ -156,8 +156,6 @@ export default function Home() {
                 {t("hero.titleLine1")}
                 <br />
                 <span className="gradient-text">{t("hero.titleHighlight")}</span>
-                <br />
-                {t("hero.titleLine2")}
               </motion.h1>
 
               <motion.p

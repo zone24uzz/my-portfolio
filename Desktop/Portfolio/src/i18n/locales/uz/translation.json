@@ -9,9 +9,8 @@
   "hero": {
     "available": "Mavjud",
     "forNewProjects": "Yangi loyihalar uchun",
-    "titleLine1": "Zamonaviy Veb",
-    "titleHighlight": "Tajribalar Yaratish",
-    "titleLine2": "Toza Kod Bilan",
+    "titleLine1": "Komron Xidoyatov",
+    "titleHighlight": "Frontend Dasturchi",
     "subtitle": "Chiroyli va tezkor veb-ilovalarni yaratishga ixtisoslashgan frontend dasturchi. React va zamonaviy texnologiyalar bilan foydalanuvchilarga qulay interfeyslar yarataman.",
     "viewWork": "Projectlarni korish",
     "getInTouch": "Bog'lanish"
