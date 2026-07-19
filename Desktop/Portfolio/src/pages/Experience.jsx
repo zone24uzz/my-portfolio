@@ -1,0 +1,208 @@
+import { useRef, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { motion } from "motion/react";
+import { DownloadSimple, FileText } from "@phosphor-icons/react";
+import TimelineItem from "../components/TimelineItem";
+
+export default function Experience() {
+  const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState("work");
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  const experiences = [
+    {
+      roleKey: "experience.roleSenior",
+      companyKey: "experience.companyTechcorp",
+      locationKey: "experience.locSF",
+      periodKey: "experience.periodSenior",
+      descKey: "experience.descSenior",
+      achievements: ["experience.achieveSenior1", "experience.achieveSenior2", "experience.achieveSenior3", "experience.achieveSenior4"],
+    },
+    {
+      roleKey: "experience.roleFullstack",
+      companyKey: "experience.companyStartup",
+      locationKey: "experience.locRemote",
+      periodKey: "experience.periodFullstack",
+      descKey: "experience.descFullstack",
+      achievements: ["experience.achieveFullstack1", "experience.achieveFullstack2", "experience.achieveFullstack3", "experience.achieveFullstack4"],
+    },
+    {
+      roleKey: "experience.roleUiux",
+      companyKey: "experience.companyDesign",
+      locationKey: "experience.locNY",
+      periodKey: "experience.periodUiux",
+      descKey: "experience.descUiux",
+      achievements: ["experience.achieveUiux1", "experience.achieveUiux2", "experience.achieveUiux3", "experience.achieveUiux4"],
+    },
+    {
+      roleKey: "experience.roleJunior",
+      companyKey: "experience.companyWeb",
+      locationKey: "experience.locAustin",
+      periodKey: "experience.periodJunior",
+      descKey: "experience.descJunior",
+      achievements: ["experience.achieveJunior1", "experience.achieveJunior2", "experience.achieveJunior3"],
+    },
+  ];
+
+  const education = [
+    {
+      roleKey: "experience.eduCS",
+      companyKey: "experience.eduSchool",
+      periodKey: "experience.eduPeriod",
+      descKey: "experience.eduCSDesc",
+    },
+    {
+      roleKey: "experience.eduBootcamp",
+      companyKey: "experience.eduBootcampSchool",
+      periodKey: "experience.eduBootcampPeriod",
+      descKey: "experience.eduBootcampDesc",
+    },
+  ];
+
+  const funFacts = [
+    { number: "4+", labelKey: "experience.companies" },
+    { number: "20+", labelKey: "experience.mentored" },
+    { number: "50+", labelKey: "experience.contributed" },
+    { number: "8", labelKey: "experience.languages" },
+    { number: "\u221E", labelKey: "experience.coffee" },
+    { number: "100%", labelKey: "experience.growth" },
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const resolveItem = (item) => ({
+    role: t(item.roleKey),
+    company: t(item.companyKey),
+    location: item.locationKey ? t(item.locationKey) : undefined,
+    period: t(item.periodKey),
+    description: t(item.descKey),
+    achievements: item.achievements ? item.achievements.map((k) => t(k)) : undefined,
+  });
+
+  return (
+    <main>
+      {/* Hero */}
+      <section style={{ paddingTop: "140px", paddingBottom: "var(--space-4xl)", position: "relative" }}>
+        <div className="section-container">
+          <motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="section-label">
+            {t("experience.label")}
+          </motion.span>
+          <div className="exp-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4xl)", alignItems: "flex-end" }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+              <h1 style={{ marginBottom: "var(--space-md)" }}>
+                {t("experience.title")} <span className="gradient-text">{t("experience.titleHighlight")}</span>
+              </h1>
+              <p style={{ fontSize: "1.05rem", maxWidth: "520px", lineHeight: 1.8 }}>{t("experience.subtitle")}</p>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} style={{ display: "flex", gap: "var(--space-md)", justifyContent: "flex-end" }} className="exp-ctas">
+              <motion.a href="#" className="btn-primary" style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem" }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <DownloadSimple size={16} weight="bold" />
+                {t("experience.downloadCV")}
+              </motion.a>
+              <motion.button className="btn-secondary" style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem" }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <FileText size={16} weight="regular" />
+                {t("experience.viewResume")}
+              </motion.button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tab Switcher */}
+      <section>
+        <div className="section-container">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+            style={{ display: "flex", gap: "4px", padding: "5px", borderRadius: "var(--radius-full)", backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)", width: "fit-content", marginBottom: "var(--space-2xl)" }}
+          >
+            {[
+              { key: "work", labelKey: "experience.workTab" },
+              { key: "education", labelKey: "experience.educationTab" },
+            ].map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                style={{
+                  padding: "10px 24px",
+                  borderRadius: "var(--radius-full)",
+                  border: "none",
+                  backgroundColor: activeTab === tab.key ? "var(--color-text-primary)" : "transparent",
+                  color: activeTab === tab.key ? "var(--color-bg-primary)" : "var(--color-text-secondary)",
+                  fontFamily: "var(--font-subheading)",
+                  fontSize: "0.85rem",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "all var(--transition-base)",
+                }}
+              >
+                {t(tab.labelKey)}
+              </button>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Timeline Content */}
+      <section className="section-padding" style={{ paddingTop: 0 }} ref={sectionRef}>
+        <div className="section-container">
+          <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {activeTab === "work"
+                ? experiences.map((exp, i) => <TimelineItem key={`${exp.roleKey}-${i}`} item={resolveItem(exp)} index={i} />)
+                : education.map((edu, i) => <TimelineItem key={`${edu.roleKey}-${i}`} item={resolveItem(edu)} index={i} />)
+              }
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fun Facts */}
+      <section className="section-padding" style={{ borderTop: "1px solid var(--color-border)", backgroundColor: "var(--color-bg-secondary)" }}>
+        <div className="section-container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "var(--space-2xl)", textAlign: "center" }}
+            className="fun-facts-grid"
+          >
+            {funFacts.map((fact) => (
+              <motion.div
+                key={fact.labelKey}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5 }}
+                whileHover={{ y: -6, borderColor: "rgba(255, 255, 255, 0.15)" }}
+                style={{ padding: "var(--space-xl)", borderRadius: "var(--radius-lg)", border: "1px solid var(--color-border)", transition: "border-color 0.4s" }}
+              >
+                <div style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 700, color: "var(--color-text-primary)", marginBottom: "6px" }}>
+                  {fact.number}
+                </div>
+                <div style={{ fontFamily: "var(--font-body)", fontSize: "0.85rem", color: "var(--color-text-muted)" }}>
+                  {t(fact.labelKey)}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <style>{`
+        @media (max-width: 1024px) { .exp-hero-grid { grid-template-columns: 1fr !important; } .exp-ctas { justify-content: flex-start !important; } }
+        @media (max-width: 768px) { .fun-facts-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+      `}</style>
+    </main>
+  );
+}
