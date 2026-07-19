@@ -8,23 +8,14 @@ import ProjectCard from "../components/ProjectCard";
 const categories = [
   { key: "projects.all", value: "All" },
   { key: "projects.webApp", value: "Web App" },
-  { key: "projects.fullStack", value: "Full Stack" },
-  { key: "projects.designSystem", value: "Design System" },
-  { key: "projects.mobile", value: "Mobile" },
-  { key: "projects.api", value: "API" },
-  { key: "projects.openSource", value: "Open Source" },
+  { key: "projects.webDesign", value: "Web Design" },
 ];
 
 const projects = [
-  { titleKey: "projects.nexusTitle", descKey: "projects.nexusDesc", category: "Web App", tags: ["React", "TypeScript", "D3.js", "GraphQL"], year: "2025", link: "#" },
-  { titleKey: "projects.luminaTitle", descKey: "projects.luminaDesc", category: "Full Stack", tags: ["Next.js", "Stripe", "PostgreSQL", "Redis"], year: "2025", link: "#" },
-  { titleKey: "projects.aetherTitle", descKey: "projects.aetherDesc", category: "Design System", tags: ["React", "Storybook", "Figma", "Radix UI"], year: "2024", link: "#" },
-  { titleKey: "projects.flowtrackTitle", descKey: "projects.flowtrackDesc", category: "Mobile", tags: ["React Native", "Firebase", "WebSockets"], year: "2024", link: "#" },
-  { titleKey: "projects.cloudscaleTitle", descKey: "projects.cloudscaleDesc", category: "API", tags: ["Node.js", "Express", "Redis", "Docker"], year: "2024", link: "#" },
-  { titleKey: "projects.prismTitle", descKey: "projects.prismDesc", category: "Open Source", tags: ["React", "TypeScript", "Rollup", "Vitest"], year: "2023", link: "#" },
-  { titleKey: "projects.pixelTitle", descKey: "projects.pixelDesc", category: "Web App", tags: ["Next.js", "AI", "Figma API", "Tailwind"], year: "2023", link: "#" },
-  { titleKey: "projects.safeguardTitle", descKey: "projects.safeguardDesc", category: "Full Stack", tags: ["React", "Python", "PostgreSQL", "AWS"], year: "2023", link: "#" },
-  { titleKey: "projects.voxpopTitle", descKey: "projects.voxpopDesc", category: "API", tags: ["Node.js", "WebSockets", "MongoDB", "Redis"], year: "2022", link: "#" },
+  { titleKey: "projects.keyronTitle", descKey: "projects.keyronDesc", category: "Web App", tags: ["React", "TailwindCSS", "Vite"], year: "2025", link: "https://testkeyron-vifj.vercel.app/" },
+  { titleKey: "projects.velocityTitle", descKey: "projects.velocityDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://velocity-blush-gamma.vercel.app/" },
+  { titleKey: "projects.indoreTitle", descKey: "projects.indoreDesc", category: "Web App", tags: ["HTML", "TailwindCSS", "JavaScript"], year: "2025", link: "https://plant-website-tailwindcss-main.vercel.app/" },
+  { titleKey: "projects.fastfoodTitle", descKey: "projects.fastfoodDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://burger-landing-one.vercel.app/" },
 ];
 
 export default function Projects() {
@@ -186,9 +177,9 @@ export default function Projects() {
             className="project-stats-grid"
           >
             {[
-              { value: "9", labelKey: "projects.projectsShown" },
-              { value: "5", labelKey: "projects.categories" },
-              { value: "15+", labelKey: "projects.technologies" },
+              { value: "4", labelKey: "projects.projectsShown" },
+              { value: "2", labelKey: "projects.categories" },
+              { value: "6", labelKey: "projects.technologies" },
               { value: "100%", labelKey: "projects.passion" },
             ].map((stat) => (
               <motion.div key={stat.labelKey} whileHover={{ scale: 1.05 }}>

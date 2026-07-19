@@ -6,25 +6,25 @@ import { ArrowRight, CaretRight, Sparkle } from "@phosphor-icons/react";
 
 const featuredProjects = [
   {
-    titleKey: "projects.nexusTitle",
+    titleKey: "projects.keyronTitle",
     categoryKey: "projects.webApp",
-    image: "https://picsum.photos/seed/nexus-dashboard/800/500",
-    path: "/projects",
-    tags: ["React", "TypeScript", "D3.js"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
+    link: "https://testkeyron-vifj.vercel.app/",
+    tags: ["React", "TailwindCSS", "Vite"],
   },
   {
-    titleKey: "projects.luminaTitle",
-    categoryKey: "projects.fullStack",
-    image: "https://picsum.photos/seed/lumina-ecommerce/800/500",
-    path: "/projects",
-    tags: ["Next.js", "Stripe", "PostgreSQL"],
+    titleKey: "projects.velocityTitle",
+    categoryKey: "projects.webDesign",
+    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=500&fit=crop",
+    link: "https://velocity-blush-gamma.vercel.app/",
+    tags: ["HTML", "CSS"],
   },
   {
-    titleKey: "projects.aetherTitle",
-    categoryKey: "projects.designSystem",
-    image: "https://picsum.photos/seed/aether-ds/800/500",
-    path: "/projects",
-    tags: ["React", "Storybook", "Figma"],
+    titleKey: "projects.indoreTitle",
+    categoryKey: "projects.webApp",
+    image: "https://images.unsplash.com/photo-1463320898484-0ac4b9d0de1f?w=800&h=500&fit=crop",
+    link: "https://plant-website-tailwindcss-main.vercel.app/",
+    tags: ["HTML", "TailwindCSS", "JavaScript"],
   },
 ];
 
@@ -369,7 +369,7 @@ export default function Home() {
                 whileHover={{ y: -8 }}
                 style={{ borderRadius: "var(--radius-xl)", overflow: "hidden", backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)", transition: "border-color 0.4s, box-shadow 0.4s" }}
               >
-                <Link to={project.path} style={{ textDecoration: "none" }}>
+                <a href={project.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}>
                   <div style={{ aspectRatio: "16/10", overflow: "hidden", backgroundColor: "var(--color-bg-tertiary)" }}>
                     <motion.img
                       src={project.image}
@@ -395,7 +395,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>
