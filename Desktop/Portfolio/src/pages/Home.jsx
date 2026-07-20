@@ -6,25 +6,25 @@ import { ArrowRight, CaretRight, Sparkle } from "@phosphor-icons/react";
 
 const featuredProjects = [
   {
-    titleKey: "projects.keyronTitle",
+    titleKey: "projects.abcAutoTitle",
     categoryKey: "projects.webApp",
-    image: "/images/project-keyron.jpg",
-    link: "https://testkeyron-vifj.vercel.app/",
-    tags: ["React", "TailwindCSS", "Vite"],
+    image: "/images/project-abcauto.png",
+    link: "https://abc-auto-xidoyatovvv.vercel.app/",
+    tags: ["React", "TailwindCSS", "JavaScript"],
   },
   {
-    titleKey: "projects.velocityTitle",
-    categoryKey: "projects.webDesign",
-    image: "/images/project-velocity.jpg",
-    link: "https://velocity-blush-gamma.vercel.app/",
-    tags: ["HTML", "CSS"],
+    titleKey: "projects.sansiroTitle",
+    categoryKey: "projects.webApp",
+    image: "/images/project-sansiro.png",
+    link: "https://sansiro-online-shop.vercel.app/",
+    tags: ["React", "TailwindCSS", "JavaScript"],
   },
   {
-    titleKey: "projects.indoreTitle",
+    titleKey: "projects.autokranTitle",
     categoryKey: "projects.webApp",
-    image: "/images/project-indore.jpg",
-    link: "https://plant-website-tailwindcss-main.vercel.app/",
-    tags: ["HTML", "TailwindCSS", "JavaScript"],
+    image: "/images/project-autokran.png",
+    link: "https://www.autokran.uz/",
+    tags: ["React", "TailwindCSS", "JavaScript", "SEO"],
   },
 ];
 

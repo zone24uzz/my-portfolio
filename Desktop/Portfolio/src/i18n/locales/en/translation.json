@@ -101,7 +101,15 @@
     "indoreTitle": "INDORE Plants",
     "indoreDesc": "A modern plant shop landing page with responsive design, smooth animations, and minimalist UI. Features products, services, testimonials, and contact sections.",
     "fastfoodTitle": "FAST FOOD",
-    "fastfoodDesc": "A modern burger restaurant landing page with a light color scheme, 3D illustrations, and interactive elements. Features menu, popular items, promotions, and contact info."
+    "fastfoodDesc": "A modern burger restaurant landing page with a light color scheme, 3D illustrations, and interactive elements. Features menu, popular items, promotions, and contact info.",
+    "abcAutoTitle": "ABC Auto",
+    "abcAutoDesc": "A modern web platform for car services. Features a dynamic Mobile-First interface with efficient catalog filtering, smooth UX, and optimized performance built with React and TailwindCSS.",
+    "sansiroTitle": "Sansiro",
+    "sansiroDesc": "A modern online clothing store with clean design and smooth shopping experience. Features product catalog with detailed filtering (by size, color, category) and an interactive shopping cart.",
+    "eliasTitle": "Elias Portfolio",
+    "eliasDesc": "An interactive personal portfolio website showcasing projects and professional skills. Features clean UI/UX, smooth animations, responsive design, and a contact form.",
+    "autokranTitle": "AutoKranUZ",
+    "autokranDesc": "A specialized web platform for renting construction equipment and autocranes. Features a user-friendly catalog with parameter selection, comprehensive SEO optimization (sitemap, structured data, meta tags), and a high-conversion contact form optimized for mobile."
   },
   "experience": {
     "label": "Experience",

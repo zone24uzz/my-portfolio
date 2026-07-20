@@ -74,8 +74,8 @@
   },
   "projects": {
     "label": "Portfolio",
-    "title": "Tanlangan",
-    "titleHighlight": "Loyihalar",
+    "title": "Loyihalar",
+    "titleHighlight": "",
     "subtitle": "Men loyihalashtirgan va ishlab chiqqan loyihalarning tanlangan to'plami. Har biri muammolarni hal qilish va ijodkorlik haqida hikoya qiladi.",
     "startProject": "Loyiha Boshlash",
     "viewProject": "Loyihani Ko'rish",
@@ -101,7 +101,15 @@
     "indoreTitle": "INDORE Plants",
     "indoreDesc": "O'simliklar do'koni uchun zamonaviy landing sahifa. Mahsulotlar, xizmatlar, mijozlar fikrlari va aloqa bo'limlari bilan.",
     "fastfoodTitle": "FAST FOOD",
-    "fastfoodDesc": "Burgerxona uchun zamonaviy och rangli landing sahifa. 3D-illyustratsiyalar, menyu va aksiyalar bilan."
+    "fastfoodDesc": "Burgerxona uchun zamonaviy och rangli landing sahifa. 3D-illyustratsiyalar, menyu va aksiyalar bilan.",
+    "abcAutoTitle": "ABC Auto",
+    "abcAutoDesc": "Avtomobil xizmatlari uchun zamonaviy veb-platforma. Mobile-First interfeys, samarali katalog filtrlash va optimallashtirilgan tezlik. React va TailwindCSS asosida yaratilgan.",
+    "sansiroTitle": "Sansiro",
+    "sansiroDesc": "Zamonaviy onlayn kiyim do'koni. Toza dizayn, qulay navigatsiya, mahsulotlar katalogi (hajm, rang, kategoriya bo'yicha filtrlash) va interaktiv savat bilan jihozlangan.",
+    "eliasTitle": "Elias Portfolio",
+    "eliasDesc": "Interaktiv shaxsiy portfolio veb-sayt. Loyihalar va professional ko'nikmalarni namoyish etadi. Silliq animatsiyalar, toza UI/UX va moslashuvchan dizayn.",
+    "autokranTitle": "AutoKranUZ",
+    "autokranDesc": "Qurilish texnikasi va avtokranlarni ijaraga olish uchun ixtisoslashtirilgan veb-platforma. Foydalanuvchi uchun qulay katalog, SEO optimallashtirish va mobil qurilmalar uchun moslashtirilgan kontakt formasi."
   },
   "experience": {
     "label": "Tajriba",

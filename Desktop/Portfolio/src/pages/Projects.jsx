@@ -16,6 +16,10 @@ const projects = [
   { titleKey: "projects.velocityTitle", descKey: "projects.velocityDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://velocity-blush-gamma.vercel.app/", image: "/images/project-velocity.jpg" },
   { titleKey: "projects.indoreTitle", descKey: "projects.indoreDesc", category: "Web App", tags: ["HTML", "TailwindCSS", "JavaScript"], year: "2025", link: "https://plant-website-tailwindcss-main.vercel.app/", image: "/images/project-indore.jpg" },
   { titleKey: "projects.fastfoodTitle", descKey: "projects.fastfoodDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://burger-landing-one.vercel.app/", image: "/images/project-fastfood.jpg" },
+  { titleKey: "projects.abcAutoTitle", descKey: "projects.abcAutoDesc", category: "Web App", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://abc-auto-xidoyatovvv.vercel.app/", image: "/images/project-abcauto.png" },
+  { titleKey: "projects.sansiroTitle", descKey: "projects.sansiroDesc", category: "Web App", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://sansiro-online-shop.vercel.app/", image: "/images/project-sansiro.png" },
+  { titleKey: "projects.eliasTitle", descKey: "projects.eliasDesc", category: "Web Design", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://komton-neon.vercel.app/", image: "/images/project-elias.png" },
+  { titleKey: "projects.autokranTitle", descKey: "projects.autokranDesc", category: "Web App", tags: ["React", "TailwindCSS", "JavaScript", "SEO", "Git"], year: "2025", link: "https://www.autokran.uz/", image: "/images/project-autokran.png" },
 ];
 
 export default function Projects() {
@@ -177,9 +181,9 @@ export default function Projects() {
             className="project-stats-grid"
           >
             {[
-              { value: "4", labelKey: "projects.projectsShown" },
+              { value: "8", labelKey: "projects.projectsShown" },
               { value: "2", labelKey: "projects.categories" },
-              { value: "6", labelKey: "projects.technologies" },
+              { value: "8", labelKey: "projects.technologies" },
               { value: "100%", labelKey: "projects.passion" },
             ].map((stat) => (
               <motion.div key={stat.labelKey} whileHover={{ scale: 1.05 }}>
