@@ -50,6 +50,10 @@ export default function Home() {
   const statsRef = useRef(null);
 
   useEffect(() => {
+    document.title = "Komron Khidoyatov | Frontend Developer";
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setStatsVisible(true);
@@ -212,7 +216,7 @@ export default function Home() {
                 >
                   <img
                     src="/images/IMG_1353.jpg"
-                    alt="Portfolio image"
+                    alt="Komron Xidoyatov"
                     style={{
                       width: "100%",
                       height: "100%",
@@ -234,7 +238,7 @@ export default function Home() {
                   >
                     <img
                       src="/images/IMG_1350.jpg"
-                      alt="Portfolio image"
+                      alt="Komron Xidoyatov"
                       style={{
                         width: "100%",
                         height: "100%",
@@ -255,7 +259,7 @@ export default function Home() {
                   >
                     <img
                       src="/images/IMG_0925.jpg"
-                      alt="Portfolio image"
+                      alt="Komron Xidoyatov"
                       style={{
                         width: "100%",
                         height: "100%",

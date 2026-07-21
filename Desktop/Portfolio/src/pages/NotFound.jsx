@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
@@ -5,6 +6,10 @@ import { House, ArrowLeft } from "@phosphor-icons/react";
 
 export default function NotFound() {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = "404 | Komron Khidoyatov";
+  }, []);
 
   return (
     <main

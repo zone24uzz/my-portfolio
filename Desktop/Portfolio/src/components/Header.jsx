@@ -61,34 +61,33 @@ export default function Header() {
           <Link
             to="/"
             style={{
-              fontFamily: "var(--font-heading)",
-              fontWeight: 800,
-              fontSize: "1.35rem",
-              letterSpacing: "-0.03em",
-              color: "var(--color-text-primary)",
-              textDecoration: "none",
               display: "flex",
               alignItems: "center",
-              gap: "8px",
+              gap: "10px",
+              textDecoration: "none",
             }}
           >
+            <img
+              src="/logo.png"
+              alt="Komron Xidoyatov"
+              style={{
+                height: 38,
+                width: 38,
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
+            />
             <span
               style={{
-                width: 32,
-                height: 32,
-                borderRadius: "var(--radius-md)",
-                background: "linear-gradient(135deg, var(--color-accent-400), var(--color-accent-500))",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                fontFamily: "var(--font-heading)",
                 fontWeight: 800,
-                fontSize: "0.9rem",
-                color: "var(--color-bg-primary)",
+                fontSize: "1.2rem",
+                letterSpacing: "-0.03em",
+                color: "var(--color-text-primary)",
               }}
             >
-              P
+              Komron Xidoyatov
             </span>
-            Portfolio
           </Link>
 
           {/* Desktop Navigation */}

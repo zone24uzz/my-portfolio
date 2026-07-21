@@ -10,60 +10,34 @@ export default function Experience() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
+  useEffect(() => {
+    document.title = "Experience | Komron Khidoyatov";
+  }, []);
+
   const experiences = [
     {
-      roleKey: "experience.roleSenior",
-      companyKey: "experience.companyTechcorp",
-      locationKey: "experience.locSF",
-      periodKey: "experience.periodSenior",
-      descKey: "experience.descSenior",
-      achievements: ["experience.achieveSenior1", "experience.achieveSenior2", "experience.achieveSenior3", "experience.achieveSenior4"],
-    },
-    {
-      roleKey: "experience.roleFullstack",
-      companyKey: "experience.companyStartup",
-      locationKey: "experience.locRemote",
-      periodKey: "experience.periodFullstack",
-      descKey: "experience.descFullstack",
-      achievements: ["experience.achieveFullstack1", "experience.achieveFullstack2", "experience.achieveFullstack3", "experience.achieveFullstack4"],
-    },
-    {
-      roleKey: "experience.roleUiux",
-      companyKey: "experience.companyDesign",
-      locationKey: "experience.locNY",
-      periodKey: "experience.periodUiux",
-      descKey: "experience.descUiux",
-      achievements: ["experience.achieveUiux1", "experience.achieveUiux2", "experience.achieveUiux3", "experience.achieveUiux4"],
-    },
-    {
-      roleKey: "experience.roleJunior",
-      companyKey: "experience.companyWeb",
-      locationKey: "experience.locAustin",
-      periodKey: "experience.periodJunior",
-      descKey: "experience.descJunior",
-      achievements: ["experience.achieveJunior1", "experience.achieveJunior2", "experience.achieveJunior3"],
+      roleKey: "experience.roleProject",
+      companyKey: "experience.companyProject",
+      locationKey: "experience.locProject",
+      periodKey: "experience.periodProject",
+      descKey: "experience.descProject",
+      achievements: ["experience.achieveProject1", "experience.achieveProject2", "experience.achieveProject3", "experience.achieveProject4", "experience.achieveProject5"],
     },
   ];
 
   const education = [
     {
-      roleKey: "experience.eduCS",
+      roleKey: "experience.eduFrontend",
       companyKey: "experience.eduSchool",
       periodKey: "experience.eduPeriod",
-      descKey: "experience.eduCSDesc",
-    },
-    {
-      roleKey: "experience.eduBootcamp",
-      companyKey: "experience.eduBootcampSchool",
-      periodKey: "experience.eduBootcampPeriod",
-      descKey: "experience.eduBootcampDesc",
+      descKey: "experience.eduDesc",
     },
   ];
 
   const funFacts = [
-    { number: "4+", labelKey: "experience.companies" },
-    { number: "20+", labelKey: "experience.mentored" },
-    { number: "50+", labelKey: "experience.contributed" },
+    { number: "8+", labelKey: "experience.companies" },
+    { number: "6", labelKey: "experience.mentored" },
+    { number: "10+", labelKey: "experience.contributed" },
     { number: "8", labelKey: "experience.languages" },
     { number: "\u221E", labelKey: "experience.coffee" },
     { number: "100%", labelKey: "experience.growth" },
@@ -103,7 +77,7 @@ export default function Experience() {
               <p style={{ fontSize: "1.05rem", maxWidth: "520px", lineHeight: 1.8 }}>{t("experience.subtitle")}</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} style={{ display: "flex", gap: "var(--space-md)", justifyContent: "flex-end" }} className="exp-ctas">
-              <motion.a href="#" className="btn-primary" style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem" }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <motion.a href="/resume.pdf" download className="btn-primary" style={{ fontSize: "0.85rem", padding: "0.75rem 1.5rem" }} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                 <DownloadSimple size={16} weight="bold" />
                 {t("experience.downloadCV")}
               </motion.a>

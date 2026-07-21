@@ -12,7 +12,7 @@ const socialLinks = [
   { icon: GithubLogo, label: "GitHub", url: "https://github.com" },
   { icon: LinkedinLogo, label: "LinkedIn", url: "https://linkedin.com" },
   { icon: TwitterLogo, label: "Twitter", url: "https://twitter.com" },
-  { icon: EnvelopeSimple, label: "Email", url: "mailto:hello@portfolio.dev" },
+  { icon: EnvelopeSimple, label: "Email", url: "mailto:xidoyatovkomron@gmail.com" },
 ];
 
 const footerLinks = [
@@ -52,35 +52,34 @@ export default function Footer() {
             <Link
               to="/"
               style={{
-                fontFamily: "var(--font-heading)",
-                fontWeight: 800,
-                fontSize: "1.5rem",
-                letterSpacing: "-0.03em",
-                color: "var(--color-text-primary)",
-                textDecoration: "none",
                 display: "flex",
                 alignItems: "center",
-                gap: "10px",
+                gap: "12px",
+                textDecoration: "none",
                 marginBottom: "var(--space-lg)",
               }}
             >
+              <img
+                src="/logo.png"
+                alt="Komron Xidoyatov"
+                style={{
+                  height: 42,
+                  width: 42,
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
               <span
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "var(--radius-md)",
-                  background: "linear-gradient(135deg, var(--color-accent-400), var(--color-accent-500))",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  fontFamily: "var(--font-heading)",
                   fontWeight: 800,
-                  fontSize: "1rem",
-                  color: "var(--color-bg-primary)",
+                  fontSize: "1.4rem",
+                  letterSpacing: "-0.03em",
+                  color: "var(--color-text-primary)",
                 }}
               >
-                P
+                Komron Xidoyatov
               </span>
-              Portfolio
             </Link>
             <p
               style={{
@@ -245,7 +244,7 @@ export default function Footer() {
               fontFamily: "var(--font-mono)",
             }}
           >
-            &copy; {new Date().getFullYear()} Portfolio. {t("footer.copyright")}
+            &copy; {new Date().getFullYear()} Komron Xidoyatov. {t("footer.copyright")}
           </p>
           <button
             onClick={scrollToTop}

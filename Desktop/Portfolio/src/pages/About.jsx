@@ -2,13 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "motion/react";
-import { ArrowRight, Code, Palette, Database, Cloud, DeviceMobile, GitBranch } from "@phosphor-icons/react";
+import { ArrowRight, Code, Database, PlugsConnected, Devices, Brain, GitBranch } from "@phosphor-icons/react";
 import SkillBar from "../components/SkillBar";
 
 const skills = [
   { name: "HTML5 / CSS3", level: 92 },
   { name: "JavaScript (ES6+)", level: 85 },
   { name: "React", level: 80 },
+  { name: "Node.js", level: 45 },
+  { name: "Express.js", level: 45 },
   { name: "Tailwind CSS", level: 88 },
   { name: "Git & GitHub", level: 75 },
   { name: "API Integration", level: 78 },
@@ -18,10 +20,10 @@ const skills = [
 
 const expertiseKeys = [
   { icon: Code, titleKey: "about.frontend", descKey: "about.frontendDesc" },
-  { icon: Palette, titleKey: "about.uiux", descKey: "about.uiuxDesc" },
   { icon: Database, titleKey: "about.backend", descKey: "about.backendDesc" },
-  { icon: Cloud, titleKey: "about.cloud", descKey: "about.cloudDesc" },
-  { icon: DeviceMobile, titleKey: "about.mobile", descKey: "about.mobileDesc" },
+  { icon: PlugsConnected, titleKey: "about.apiIntegration", descKey: "about.apiDesc" },
+  { icon: Devices, titleKey: "about.responsive", descKey: "about.responsiveDesc" },
+  { icon: Brain, titleKey: "about.ai", descKey: "about.aiDesc" },
   { icon: GitBranch, titleKey: "about.git", descKey: "about.gitDesc" },
 ];
 
@@ -36,6 +38,10 @@ export default function About() {
   const { t } = useTranslation();
   const [visibleSections, setVisibleSections] = useState({});
   const sectionRefs = useRef({});
+
+  useEffect(() => {
+    document.title = "About | Komron Khidoyatov";
+  }, []);
 
   useEffect(() => {
     const observers = [];
