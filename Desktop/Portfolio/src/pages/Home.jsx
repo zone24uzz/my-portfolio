@@ -50,7 +50,9 @@ export default function Home() {
   const statsRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Komron Khidoyatov | Frontend Developer";
+    document.title = "Komron Khidoyatov — Frontend Developer & Web Developer from Tashkent, Uzbekistan";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = "Komron Khidoyatov (Xidoyatov Komron) — 15-year-old frontend developer from Tashkent, Uzbekistan. Specializing in React, Tailwind CSS, and modern web technologies. View my portfolio and projects.";
   }, []);
 
   useEffect(() => {
@@ -214,9 +216,9 @@ export default function Home() {
                     backgroundColor: "var(--color-bg-secondary)",
                   }}
                 >
-                  <img
-                    src="/images/IMG_1353.jpg"
-                    alt="Komron Xidoyatov"
+          <img
+            src="/images/IMG_1353.jpg"
+            alt="Komron Khidoyatov — Frontend Developer from Tashkent, Uzbekistan"
                     style={{
                       width: "100%",
                       height: "100%",
@@ -236,9 +238,9 @@ export default function Home() {
                       backgroundColor: "var(--color-bg-secondary)",
                     }}
                   >
-                    <img
-                      src="/images/IMG_1350.jpg"
-                      alt="Komron Xidoyatov"
+          <img
+            src="/images/IMG_1350.jpg"
+            alt="Komron Xidoyatov — Frontend Developer Portfolio"
                       style={{
                         width: "100%",
                         height: "100%",
@@ -257,9 +259,9 @@ export default function Home() {
                       backgroundColor: "var(--color-bg-secondary)",
                     }}
                   >
-                    <img
-                      src="/images/IMG_0925.jpg"
-                      alt="Komron Xidoyatov"
+          <img
+            src="/images/IMG_0925.jpg"
+            alt="Komron Xidoyatov — Web Developer in Tashkent"
                       style={{
                         width: "100%",
                         height: "100%",

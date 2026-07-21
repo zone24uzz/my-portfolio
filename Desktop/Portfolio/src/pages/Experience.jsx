@@ -11,7 +11,9 @@ export default function Experience() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Experience | Komron Khidoyatov";
+    document.title = "Experience — Komron Khidoyatov | Frontend Developer Journey & Skills";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = "Komron Khidoyatov (Xidoyatov Komron) — frontend developer experience. 15-year-old web developer from Uzbekistan with expertise in React, Tailwind CSS, and modern JavaScript.";
   }, []);
 
   const experiences = [

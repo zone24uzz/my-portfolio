@@ -30,7 +30,9 @@ export default function Contact() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Contact | Komron Khidoyatov";
+    document.title = "Contact Komron Khidoyatov — Frontend Developer in Tashkent, Uzbekistan";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = "Get in touch with Komron Khidoyatov (Xidoyatov Komron) — frontend developer from Tashkent, Uzbekistan. Hire me for your next React, Tailwind CSS, or web development project.";
   }, []);
 
   useEffect(() => {

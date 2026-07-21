@@ -8,7 +8,9 @@ export default function NotFound() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    document.title = "404 | Komron Khidoyatov";
+    document.title = "404 — Page Not Found | Komron Khidoyatov Portfolio";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = "Page not found — Komron Khidoyatov (Xidoyatov Komron), frontend developer from Tashkent, Uzbekistan. Return to the homepage to view my portfolio.";
   }, []);
 
   return (

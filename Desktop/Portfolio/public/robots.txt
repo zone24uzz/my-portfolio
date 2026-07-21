@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://komron-khidoyatov.vercel.app/sitemap.xml

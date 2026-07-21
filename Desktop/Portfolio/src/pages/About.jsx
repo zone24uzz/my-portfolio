@@ -40,7 +40,9 @@ export default function About() {
   const sectionRefs = useRef({});
 
   useEffect(() => {
-    document.title = "About | Komron Khidoyatov";
+    document.title = "About Komron Khidoyatov — Frontend Developer & Web Developer from Uzbekistan";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = "Learn more about Komron Khidoyatov (Xidoyatov Komron) — a 15-year-old frontend developer from Tashkent, Uzbekistan. Discover my skills, expertise in React, Tailwind CSS, and web development journey.";
   }, []);
 
   useEffect(() => {
@@ -120,7 +122,7 @@ export default function About() {
               style={{ position: "relative", display: "flex", justifyContent: "center" }}
             >
               <div style={{ position: "relative", width: "100%", maxWidth: "420px", aspectRatio: "3/4", borderRadius: "var(--radius-2xl)", overflow: "hidden", border: "1px solid var(--color-border)", backgroundColor: "var(--color-bg-secondary)", boxShadow: "var(--shadow-lg)" }}>
-                <img src="/images/IMG_1355.jpg" alt={t("about.creativeDev")} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/images/IMG_1355.jpg" alt="Komron Khidoyatov — Frontend Developer Portfolio" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "var(--space-xl)", background: "linear-gradient(to top, rgba(11, 16, 36, 0.9), transparent)" }}>
                   <span style={{ color: "var(--color-text-primary)", fontFamily: "var(--font-mono)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.6 }}>
                     {t("about.creativeDev")}

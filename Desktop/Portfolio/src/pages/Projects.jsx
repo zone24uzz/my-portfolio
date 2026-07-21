@@ -31,7 +31,9 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
-    document.title = "Projects | Komron Khidoyatov";
+    document.title = "Projects — Komron Khidoyatov | Web Developer Portfolio from Uzbekistan";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = "Explore the portfolio of Komron Khidoyatov (Xidoyatov Komron) — frontend developer from Tashkent, Uzbekistan. View web development projects built with React, Tailwind CSS, and modern technologies.";
   }, []);
 
   const filteredProjects =
