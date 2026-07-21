@@ -109,7 +109,13 @@
     "eliasTitle": "Elias Portfolio",
     "eliasDesc": "Interaktiv shaxsiy portfolio veb-sayt. Loyihalar va professional ko'nikmalarni namoyish etadi. Silliq animatsiyalar, toza UI/UX va moslashuvchan dizayn.",
     "autokranTitle": "AutoKranUZ",
-    "autokranDesc": "Qurilish texnikasi va avtokranlarni ijaraga olish uchun ixtisoslashtirilgan veb-platforma. Foydalanuvchi uchun qulay katalog, SEO optimallashtirish va mobil qurilmalar uchun moslashtirilgan kontakt formasi."
+    "autokranDesc": "Qurilish texnikasi va avtokranlarni ijaraga olish uchun ixtisoslashtirilgan veb-platforma. Foydalanuvchi uchun qulay katalog, SEO optimallashtirish va mobil qurilmalar uchun moslashtirilgan kontakt formasi.",
+    "dayworkTitle": "DayWork",
+    "dayworkDesc": "Vazifalarni boshqarish, kunlik rejalashtirish va samaradorlik platformalari uchun mo'ljallangan zamonaviy, toza va intuitiv UI Kit. Minimal dizayn, Auto Layout 3.0, Light & Dark Mode, Dashboard, Kanban Board, Kalendar, Analitika va Profil sozlamalari kabi tayyor ekranlarni o'z ichiga oladi.",
+    "statuscodesTitle": "Status Codes",
+    "statuscodesDesc": "Ishlab chiquvchilarga HTTP status kodlarini tezda topish va tushunishga yordam beradigan interaktiv veb-ilova. Batafsil tushuntirishlar, foydalanish stsenariylari va amaliy API kod namunalari bilan jihozlangan.",
+    "spotifyTitle": "Spotify Clone",
+    "spotifyDesc": "React va TailwindCSS asosida yaratilgan zamonaviy, to'liq moslashuvchan Spotify Clone. Original Spotify interfeysidan ilhomlangan holda intuitiv navigatsiya, musiqa albomlari va playlistlar, qidiruv, sidebar, media player va silliq animatsiyalar bilan jihozlangan."
   },
   "experience": {
     "label": "Tajriba",

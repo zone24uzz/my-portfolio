@@ -9,6 +9,7 @@ const categories = [
   { key: "projects.all", value: "All" },
   { key: "projects.webApp", value: "Web App" },
   { key: "projects.webDesign", value: "Web Design" },
+  { key: "projects.designSystem", value: "Design System" },
 ];
 
 const projects = [
@@ -20,6 +21,9 @@ const projects = [
   { titleKey: "projects.sansiroTitle", descKey: "projects.sansiroDesc", category: "Web App", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://sansiro-online-shop.vercel.app/", image: "/images/project-sansiro.png" },
   { titleKey: "projects.eliasTitle", descKey: "projects.eliasDesc", category: "Web Design", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://komton-neon.vercel.app/", image: "/images/project-elias.png" },
   { titleKey: "projects.autokranTitle", descKey: "projects.autokranDesc", category: "Web App", tags: ["React", "TailwindCSS", "JavaScript", "SEO", "Git"], year: "2025", link: "https://www.autokran.uz/", image: "/images/project-autokran.png" },
+  { titleKey: "projects.dayworkTitle", descKey: "projects.dayworkDesc", category: "Design System", tags: ["Figma", "Auto Layout", "Design System", "UI Kit"], year: "2026", link: "https://www.figma.com/design/xNBQcEy1buW9bLNvFuGglJ/DayWork-Figma?node-id=0-1&t=RQKWuNMOh9s2PyWV-1", image: "/images/project-daywork.jpg" },
+  { titleKey: "projects.statuscodesTitle", descKey: "projects.statuscodesDesc", category: "Web App", tags: ["React", "TailwindCSS", "JavaScript"], year: "2026", link: "https://status-codes-nine.vercel.app/", image: "/images/project-statuscodes.png" },
+  { titleKey: "projects.spotifyTitle", descKey: "projects.spotifyDesc", category: "Web App", tags: ["React", "TailwindCSS", "Vite"], year: "2026", link: "https://spotify-clone-one-kohl.vercel.app/", image: "/images/project-spotify.jpg" },
 ];
 
 export default function Projects() {
@@ -185,8 +189,8 @@ export default function Projects() {
             className="project-stats-grid"
           >
             {[
-              { value: "8", labelKey: "projects.projectsShown" },
-              { value: "2", labelKey: "projects.categories" },
+              { value: "11", labelKey: "projects.projectsShown" },
+              { value: "3", labelKey: "projects.categories" },
               { value: "8", labelKey: "projects.technologies" },
               { value: "100%", labelKey: "projects.passion" },
             ].map((stat) => (

@@ -109,7 +109,13 @@
     "eliasTitle": "Elias Portfolio",
     "eliasDesc": "An interactive personal portfolio website showcasing projects and professional skills. Features clean UI/UX, smooth animations, responsive design, and a contact form.",
     "autokranTitle": "AutoKranUZ",
-    "autokranDesc": "A specialized web platform for renting construction equipment and autocranes. Features a user-friendly catalog with parameter selection, comprehensive SEO optimization (sitemap, structured data, meta tags), and a high-conversion contact form optimized for mobile."
+    "autokranDesc": "A specialized web platform for renting construction equipment and autocranes. Features a user-friendly catalog with parameter selection, comprehensive SEO optimization (sitemap, structured data, meta tags), and a high-conversion contact form optimized for mobile.",
+    "dayworkTitle": "DayWork",
+    "dayworkDesc": "A modern, clean, and intuitive UI Kit designed for task management, daily planning, and productivity platforms. Features clean minimal design, Auto Layout 3.0, Light & Dark Mode, and ready-to-use screens including Dashboard, Kanban Board, Calendar View, Analytics, and Profile Settings.",
+    "statuscodesTitle": "Status Codes",
+    "statuscodesDesc": "An interactive web application designed to help developers quickly reference and understand HTTP status codes. Features detailed explanations, usage scenarios, and practical API code snippets for seamless integration.",
+    "spotifyTitle": "Spotify Clone",
+    "spotifyDesc": "A modern, fully responsive Spotify Clone built with React and TailwindCSS, inspired by the original Spotify interface. Features intuitive navigation, music albums and playlists view, search, sidebar, media player, and smooth animations for a premium user experience."
   },
   "experience": {
     "label": "Experience",
