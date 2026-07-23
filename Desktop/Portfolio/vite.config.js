@@ -21,10 +21,25 @@ export default defineConfig({
             return 'vendor-icons';
           }
         },
+        assetFileNames: (assetInfo) => {
+          const name = assetInfo.name;
+          // Keep font files in a separate directory for better caching
+          if (name.endsWith('.woff') || name.endsWith('.woff2') || name.endsWith('.ttf') || name.endsWith('.eot')) {
+            return 'assets/fonts/[name]-[hash][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
       },
     },
-    chunkSizeWarningLimit: 300,
+    chunkSizeWarningLimit: 350,
     target: 'es2020',
     sourcemap: false,
+    cssCodeSplit: false,
+    reportCompressedSize: true,
+  },
+  server: {
+    headers: {
+      'Cache-Control': 'no-cache',
+    },
   },
 })

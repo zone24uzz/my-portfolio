@@ -10,10 +10,10 @@ import {
 } from "@phosphor-icons/react";
 
 const socialLinks = [
-  { icon: GithubLogo, label: "GitHub", url: "https://github.com" },
-  { icon: LinkedinLogo, label: "LinkedIn", url: "https://linkedin.com" },
+  { icon: GithubLogo, label: "GitHub", url: "https://github.com/komronkhidoyatov" },
+  { icon: LinkedinLogo, label: "LinkedIn", url: "https://www.linkedin.com/in/komronkhidoyatov" },
   { icon: InstagramLogo, label: "Instagram", url: "https://instagram.com/khidoyatov.codes" },
-  { icon: TwitterLogo, label: "Twitter", url: "https://twitter.com" },
+  { icon: TwitterLogo, label: "X (Twitter)", url: "https://x.com/komron_dev" },
   { icon: EnvelopeSimple, label: "Email", url: "mailto:xidoyatovkomron@gmail.com" },
 ];
 

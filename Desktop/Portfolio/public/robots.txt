@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Allow: /about
+Allow: /services
+Allow: /projects
+Allow: /experience
+Allow: /contact
 
 Sitemap: https://xidoyatovkomron.uz/sitemap.xml

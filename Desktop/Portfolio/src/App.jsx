@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
-import { useEffect, useState, lazy, Suspense } from "react";
+import { motion, useScroll, useSpring, useAnimationControls } from "motion/react";
+import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import { CaretUp } from "@phosphor-icons/react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import AnimatedPage from "./components/AnimatedPage";
+import ErrorBoundary from "./components/ErrorBoundary";
+import PageLoader from "./components/PageLoader";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -105,25 +107,142 @@ function BackToTop() {
 
 function AnimatedRoutes() {
   const location = useLocation();
+  const [pageReady, setPageReady] = useState(true);
+  const curtainControls = useAnimationControls();
+  const prevPathRef = useRef(location.pathname);
+  const isAnimatingRef = useRef(false);
+
+  useEffect(() => {
+    const prevPath = prevPathRef.current;
+    prevPathRef.current = location.pathname;
+
+    if (prevPath !== location.pathname && !isAnimatingRef.current) {
+      isAnimatingRef.current = true;
+      setPageReady(false);
+      runCurtainAnimation();
+    }
+  }, [location]);
+
+  async function runCurtainAnimation() {
+    // Phase 1: curtain slides in from the left, covering the page
+    await curtainControls.start(
+      { x: "0%" },
+      { duration: 0.4, ease: [0.16, 1, 0.3, 1] }
+    );
+
+    // Phase 2: short pause to let the new lazy chunk render behind the curtain
+    // React Router + React.lazy swap the page instantly on location change
+    // This small wait ensures the component has mounted behind the curtain
+    await new Promise((r) => setTimeout(r, 80));
+
+    // Phase 3: curtain slides out to the right, revealing the new page
+    await curtainControls.start(
+      { x: "100%" },
+      { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
+    );
+
+    // Phase 4: reset curtain position & allow page entrance animations
+    curtainControls.set({ x: "-100%" });
+    setPageReady(true);
+    isAnimatingRef.current = false;
+  }
 
   return (
-    <AnimatePresence mode="wait">
-      <div id="main-content" tabIndex="-1" style={{ outline: "none" }}>
-        <Suspense fallback={<div style={{ minHeight: "100dvh" }} />}>
-          <AnimatedPage key={location.pathname}>
-            <Routes location={location}>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </AnimatedPage>
+    <>
+      <div id="main-content" tabIndex="-1" style={{ outline: "none", position: "relative", zIndex: 1 }}>
+        <Suspense fallback={<PageLoader />}>
+          <ErrorBoundary>
+            <AnimatedPage key={location.pathname} ready={pageReady}>
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/experience" element={<Experience />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </AnimatedPage>
+          </ErrorBoundary>
         </Suspense>
       </div>
-    </AnimatePresence>
+
+      {/* Page transition curtain — slides left→center, then right→out */}
+      <motion.div
+        animate={curtainControls}
+        initial={{ x: "-100%" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100dvh",
+          zIndex: 9998,
+          background: "linear-gradient(135deg, var(--color-accent-400), var(--color-accent-500))",
+          pointerEvents: "none",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+        }}
+      >
+        {/* Diagonal line pattern overlay */}
+        <svg
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            opacity: 0.08,
+          }}
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <pattern
+              id="curtainPattern"
+              patternUnits="userSpaceOnUse"
+              width="20"
+              height="20"
+              patternTransform="rotate(45)"
+            >
+              <line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="20"
+                stroke="white"
+                strokeWidth="1"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#curtainPattern)" />
+        </svg>
+
+        {/* Shimmer glow */}
+        <motion.div
+          animate={{
+            x: ["-100%", "200%"],
+          }}
+          transition={{
+            duration: 1.2,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 0.5,
+          }}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "30%",
+            height: "100%",
+            background:
+              "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+            transform: "skewX(-20deg)",
+          }}
+        />
+      </motion.div>
+    </>
   );
 }
 

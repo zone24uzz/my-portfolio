@@ -10,9 +10,9 @@
   "hero": {
     "available": "Bo'sh",
     "forNewProjects": "Yangi loyihalar uchun",
-    "titleLine1": "Komron Xidoyatov",
+    "titleLine1": "Xidoyatov Komron",
     "titleHighlight": "Frontend Dasturchi",
-    "subtitle": "Frontend dasturchiman. React va zamonaviy texnologiyalar bilan chiroyli, tez ishlaydigan veb-ilovalar yasayman. Odamlarga qulay interfeyslar tayyorlash — mening ishim.",
+    "subtitle": "Xidoyatov Komron (Komron Khidoyatov) — 15 yoshli frontend dasturchi. React, Tailwind CSS va zamonaviy texnologiyalar bilan chiroyli, tez ishlaydigan veb-ilovalar yasayman. Odamlarga qulay interfeyslar tayyorlash — mening ishim.",
     "viewWork": "Loyihalarni Ko'rish",
     "getInTouch": "Bog'lanish"
   },

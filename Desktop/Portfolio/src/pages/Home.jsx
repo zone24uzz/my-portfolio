@@ -61,9 +61,9 @@ export default function Home() {
   }, [lightboxImage, closeLightbox]);
 
   useEffect(() => {
-    document.title = "Komron Khidoyatov — Frontend Developer & Web Developer from Tashkent, Uzbekistan";
+    document.title = "Xidoyatov Komron — Frontend Developer & Web Developer from Tashkent, Uzbekistan";
     let metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.content = "Komron Khidoyatov (Xidoyatov Komron) — 15-year-old frontend developer from Tashkent, Uzbekistan. Specializing in React, Tailwind CSS, and modern web technologies. View my portfolio and projects.";
+    if (metaDesc) metaDesc.content = "Xidoyatov Komron (Komron Khidoyatov) — 15 yoshli frontend developer. React, Tailwind CSS va zamonaviy web texnologiyalar bo'yicha mutaxassis. Portfolioni va loyihalarni ko'rish.";
   }, []);
 
   useEffect(() => {
