@@ -251,19 +251,35 @@ export default function About() {
 
       <style>{`
         @media (max-width: 1024px) {
-          .about-hero-grid { grid-template-columns: 1fr !important; }
+          .about-hero-grid { grid-template-columns: 1fr !important; gap: var(--space-2xl) !important; }
           .about-visual { order: -1; }
-          .about-visual > div { max-width: 320px !important; margin: 0 auto; }
+          .about-visual > div { max-width: 300px !important; margin: 0 auto; }
           .expertise-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .skills-grid { grid-template-columns: 1fr !important; }
+          .skills-grid { grid-template-columns: 1fr !important; gap: var(--space-3xl) !important; }
           .floating-badge { display: none !important; }
+          .about-hero-grid h1 { max-width: none !important; }
         }
         @media (max-width: 768px) {
           .quick-facts { grid-template-columns: 1fr !important; }
-          .expertise-grid { grid-template-columns: 1fr !important; }
+          .expertise-grid { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
+          .expertise-grid > div { padding: var(--space-xl) !important; }
+          .about-visual > div { max-width: 260px !important; }
+          .skills-grid { gap: var(--space-2xl) !important; }
         }
         @media (max-width: 480px) {
-          .expertise-grid > div { padding: var(--space-xl) !important; }
+          .expertise-grid > div { padding: var(--space-lg) !important; }
+          .expertise-grid > div h3 { font-size: 1rem !important; }
+          .expertise-grid > div p { font-size: 0.8rem !important; }
+          .quick-facts { gap: var(--space-sm) !important; }
+          .quick-facts > div { padding: var(--space-sm) var(--space-md) !important; }
+          .quick-facts > div div:last-child { font-size: 0.8rem !important; }
+          .about-visual > div { max-width: 220px !important; border-radius: var(--radius-xl) !important; }
+          .about-visual > div div[style*="gradient"] { padding: var(--space-md) !important; }
+          .about-visual > div div[style*="gradient"] p { font-size: 0.9rem !important; }
+        }
+        @media (max-width: 360px) {
+          .about-visual > div { max-width: 200px !important; }
+          .expertise-grid > div { padding: var(--space-md) var(--space-lg) !important; }
         }
       `}</style>
     </main>

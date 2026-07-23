@@ -570,22 +570,35 @@ export default function Home() {
 
       <style>{`
         @media (max-width: 1024px) {
-          .hero-grid { grid-template-columns: 1fr !important; gap: var(--space-3xl) !important; }
+          .hero-grid { grid-template-columns: 1fr !important; gap: var(--space-2xl) !important; }
           .hero-visual { display: none !important; }
           .projects-grid-home { grid-template-columns: repeat(2, 1fr) !important; }
+          .hero-ctas { gap: var(--space-md) !important; }
         }
         @media (max-width: 768px) {
           .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .stats-grid > div { padding: var(--space-lg) !important; }
           .projects-grid-home { grid-template-columns: 1fr !important; }
-          .hero-ctas { flex-direction: column; }
+          .hero-ctas { flex-direction: column; width: 100%; }
           .hero-ctas a { width: 100%; justify-content: center; }
           .section-header { flex-direction: column; align-items: flex-start; }
+          .cta-section { padding: var(--space-3xl) var(--space-xl) !important; }
+          [style*="max-width: 520px"] { max-width: none !important; }
+          .hero-ctas { flex-direction: column; width: 100%; }
+          .hero-ctas .btn-primary, .hero-ctas .btn-secondary { width: 100%; justify-content: center; }
         }
         @media (max-width: 480px) {
-          .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-md) !important; }
+          .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-sm) !important; }
+          .stats-grid > div { padding: var(--space-md) var(--space-lg) !important; }
+          .cta-section { padding: var(--space-2xl) var(--space-lg) !important; border-radius: var(--radius-xl) !important; }
+          .cta-section p { font-size: 0.9rem !important; }
+          .projects-grid-home { gap: var(--space-md) !important; }
+          .projects-grid-home > div { border-radius: var(--radius-lg) !important; }
+          .projects-grid-home h3 { font-size: 1rem !important; }
         }
         @media (max-width: 360px) {
-          .hero-ctas a { font-size: 0.8rem !important; padding: 0.7rem 1.2rem !important; }
+          .stats-grid { grid-template-columns: 1fr 1fr !important; }
+          .stats-grid > div { padding: var(--space-sm) var(--space-md) !important; }
         }
       `}</style>
     </main>

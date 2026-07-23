@@ -289,18 +289,32 @@ export default function Services() {
 
       <style>{`
         @media (max-width: 1024px) {
-          .services-hero-grid { grid-template-columns: 1fr !important; }
+          .services-hero-grid { grid-template-columns: 1fr !important; gap: var(--space-2xl) !important; }
           .services-visual { display: none !important; }
-          .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .services-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-lg) !important; }
           .process-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-2xl) !important; }
           .process-connector { display: none; }
         }
         @media (max-width: 768px) {
-          .services-grid { grid-template-columns: 1fr !important; }
-          .process-grid { grid-template-columns: 1fr !important; }
+          .services-grid { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
+          .process-grid { grid-template-columns: 1fr !important; gap: var(--space-2xl) !important; }
+          .process-grid > div { max-width: 400px; margin: 0 auto; }
+          .process-grid > div p { max-width: none !important; }
+          .services-hero-grid h1 { max-width: none !important; }
+          .services-hero-grid p { max-width: none !important; }
         }
         @media (max-width: 480px) {
-          .services-grid > div { padding: var(--space-xl) !important; }
+          .services-grid > div { padding: var(--space-lg) !important; }
+          .services-grid > div h3 { font-size: 1rem !important; }
+          .services-grid > div p { font-size: 0.8rem !important; }
+          .process-grid { gap: var(--space-xl) !important; }
+          .process-grid > div h3 { font-size: 0.95rem !important; }
+          .process-grid > div p { font-size: 0.8rem !important; }
+          .services-hero-grid + div .btn-primary { width: 100%; justify-content: center; }
+        }
+        @media (max-width: 360px) {
+          .services-grid > div { padding: var(--space-md) var(--space-lg) !important; }
+          .process-grid h3 { font-size: 0.9rem !important; }
         }
       `}</style>
     </main>

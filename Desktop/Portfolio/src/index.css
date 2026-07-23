@@ -340,17 +340,112 @@ body::after {
   50% { opacity: 0.8; }
 }
 
+/* ===== Responsive Design System ===== */
+
+/* Tablet - 1024px */
+@media (max-width: 1024px) {
+  .bg-orb--1 { width: 300px; height: 300px; }
+  .bg-orb--2 { width: 250px; height: 250px; }
+  .bg-orb--3 { width: 200px; height: 200px; }
+}
+
+/* Small tablet / large phone - 768px */
 @media (max-width: 768px) {
-  .section-container { padding: 0 var(--space-lg); }
-  .section-padding { padding: var(--space-4xl) 0; }
+  .section-container { 
+    padding: 0 clamp(1rem, 4vw, 1.5rem); 
+  }
+  .section-padding { 
+    padding: clamp(3rem, 8vw, 4rem) 0; 
+  }
+  h1 { font-size: clamp(2rem, 7vw, 3rem) !important; }
+  h2 { font-size: clamp(1.5rem, 5vw, 2.5rem) !important; }
+  h3 { font-size: clamp(1.1rem, 3.5vw, 1.5rem) !important; }
+  
+  .bg-orb--1 { width: 200px; height: 200px; top: -5%; left: -10%; opacity: 0.08; }
+  .bg-orb--2 { width: 180px; height: 180px; bottom: -5%; right: -10%; opacity: 0.08; }
+  .bg-orb--3 { width: 150px; height: 150px; display: none; }
+  
+  .section-label { 
+    font-size: 0.6rem !important; 
+  }
+  .section-label::before { 
+    width: 16px; 
+  }
+  
+  /* Better touch targets on mobile */
+  a, button, [role="button"] { 
+    touch-action: manipulation; 
+  }
+  
+  /* Hide decorative floating elements on mobile */
+  .floating-badge { display: none !important; }
+  .process-connector { display: none; }
+  
+  /* Prevent horizontal scroll */
+  img, svg, video { max-width: 100%; height: auto; }
 }
+
+/* Phone - 480px */
 @media (max-width: 480px) {
-  .section-container { padding: 0 var(--space-md); }
-  .section-padding { padding: var(--space-3xl) 0; }
-  p { font-size: 0.9rem !important; line-height: 1.7 !important; }
-  .btn-primary, .btn-secondary { font-size: 0.8rem !important; padding: 0.7rem 1.4rem !important; }
+  .section-container { 
+    padding: 0 clamp(0.75rem, 3vw, 1rem); 
+  }
+  .section-padding { 
+    padding: clamp(2rem, 6vw, 3rem) 0; 
+  }
+  
+  p { 
+    font-size: 0.9rem !important; 
+    line-height: 1.7 !important; 
+    max-width: none !important;
+  }
+  
+  .btn-primary, .btn-secondary {
+    font-size: 0.8rem !important;
+    padding: 0.65rem 1.2rem !important;
+    gap: var(--space-sm) !important;
+  }
+  
+  h1 { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; }
+  h2 { font-size: clamp(1.35rem, 6vw, 2rem) !important; }
+  
+  .section-label { 
+    font-size: 0.55rem !important; 
+    margin-bottom: 0.75rem !important;
+  }
+  .section-label::before { 
+    width: 14px; 
+  }
+  
+  .bg-orb--1, .bg-orb--2, .bg-orb--3 { display: none; }
+  
+  /* Full-width buttons on mobile */
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
 }
+
+/* Small phone - 360px */
 @media (max-width: 360px) {
-  .section-container { padding: 0 12px; }
-  .section-padding { padding: var(--space-2xl) 0; }
+  .section-container { 
+    padding: 0 10px; 
+  }
+  .section-padding { 
+    padding: var(--space-2xl) 0; 
+  }
+  h1 { font-size: clamp(1.4rem, 9vw, 1.75rem) !important; }
+  p { font-size: 0.85rem !important; line-height: 1.6 !important; }
+  .btn-primary, .btn-secondary {
+    font-size: 0.75rem !important;
+    padding: 0.6rem 1rem !important;
+  }
+  
+  /* Smaller gaps for tiny screens */
+  [style*="gap: var(--space-xl)"] {
+    gap: var(--space-lg) !important;
+  }
+  [style*="gap: var(--space-2xl)"] {
+    gap: var(--space-lg) !important;
+  }
 }

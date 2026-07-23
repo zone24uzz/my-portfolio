@@ -287,11 +287,31 @@ export default function Contact() {
       <style>{`
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .spinning { animation: spin 1s linear infinite; }
-        @media (max-width: 1024px) { .contact-hero-grid { grid-template-columns: 1fr !important; } .contact-content-grid { grid-template-columns: 1fr !important; } }
-        @media (max-width: 768px) { .form-row { grid-template-columns: 1fr !important; } }
-        @media (max-width: 480px) {
+        @media (max-width: 1024px) { 
+          .contact-hero-grid { grid-template-columns: 1fr !important; } 
+          .contact-content-grid { grid-template-columns: 1fr !important; gap: var(--space-xl) !important; } 
+        }
+        @media (max-width: 768px) { 
+          .form-row { grid-template-columns: 1fr !important; gap: var(--space-md) !important; } 
           .contact-content-grid > div:first-child > div { padding: var(--space-xl) !important; }
           .contact-content-grid > div:last-child > div { padding: var(--space-xl) !important; }
+          .contact-content-grid .btn-primary { width: 100%; justify-content: center; }
+          .contact-hero-grid h1 { max-width: none !important; }
+          .contact-hero-grid p { max-width: none !important; }
+        }
+        @media (max-width: 480px) {
+          .contact-content-grid > div:first-child > div { padding: var(--space-lg) !important; }
+          .contact-content-grid > div:last-child > div { padding: var(--space-lg) !important; }
+          .contact-content-grid input, .contact-content-grid textarea { font-size: 0.85rem !important; padding: 10px 14px !important; }
+          .contact-content-grid label { font-size: 0.8rem !important; }
+          .contact-content-grid h3 { font-size: 1rem !important; }
+          .contact-content-grid div[style*="flex-direction: column"] { gap: var(--space-md) !important; }
+        }
+        @media (max-width: 360px) {
+          .contact-content-grid > div:first-child > div { padding: var(--space-md) !important; }
+          .contact-content-grid > div:last-child > div { padding: var(--space-md) !important; }
+          .contact-content-grid a { padding: var(--space-sm) var(--space-md) !important; }
+          .contact-content-grid a div:first-child { font-size: 0.8rem !important; }
         }
       `}</style>
     </main>

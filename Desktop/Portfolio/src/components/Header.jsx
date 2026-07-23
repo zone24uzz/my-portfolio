@@ -209,9 +209,18 @@ export default function Header() {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
         }
+        @media (max-width: 1024px) {
+          .desktop-nav > a { padding: 6px 10px !important; font-size: 0.8rem !important; }
+        }
         @media (max-width: 480px) {
-          header .section-container > a span { font-size: 1rem !important; }
-          header .section-container > a img { height: 32px !important; width: 32px !important; }
+          header .section-container > a span { font-size: 0.9rem !important; }
+          header .section-container > a img { height: 30px !important; width: 30px !important; }
+          header .section-container { height: 60px !important; }
+          header .section-container > a { gap: 8px !important; }
+        }
+        @media (max-width: 360px) {
+          header .section-container > a span { font-size: 0.8rem !important; }
+          header .section-container > a img { height: 26px !important; width: 26px !important; }
         }
       `}</style>
     </>

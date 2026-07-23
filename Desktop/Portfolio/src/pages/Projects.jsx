@@ -210,13 +210,47 @@ export default function Projects() {
       </section>
 
       <style>{`
-        @media (max-width: 1024px) { .projects-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 1024px) { 
+          .projects-grid { grid-template-columns: repeat(2, 1fr) !important; } 
+        }
         @media (max-width: 768px) {
-          .projects-grid { grid-template-columns: 1fr !important; }
+          .projects-grid { grid-template-columns: 1fr !important; gap: var(--space-md) !important; }
           .projects-header { flex-direction: column; align-items: flex-start; }
-          .filter-bar { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+          .projects-header h1 { max-width: none !important; }
+          .projects-header p { max-width: none !important; }
+          .filter-bar { 
+            overflow-x: auto; 
+            flex-wrap: nowrap !important; 
+            -webkit-overflow-scrolling: touch; 
+            scrollbar-width: none; 
+            padding-bottom: var(--space-md) !important;
+            gap: var(--space-sm) !important;
+          }
           .filter-bar::-webkit-scrollbar { display: none; }
-          .project-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-lg) !important; }
+          .filter-bar button { 
+            white-space: nowrap; 
+            font-size: 0.75rem !important; 
+            padding: 5px 14px !important; 
+            flex-shrink: 0;
+          }
+          .project-stats-grid { 
+            grid-template-columns: repeat(2, 1fr) !important; 
+            gap: var(--space-md) !important; 
+          }
+        }
+        @media (max-width: 480px) {
+          .projects-header .btn-primary { width: 100%; justify-content: center; }
+          .project-stats-grid { 
+            grid-template-columns: repeat(2, 1fr) !important; 
+            gap: var(--space-sm) !important; 
+          }
+          .project-stats-grid > div { padding: var(--space-sm) !important; }
+        }
+        @media (max-width: 360px) {
+          .filter-bar button { 
+            font-size: 0.7rem !important; 
+            padding: 4px 10px !important; 
+          }
         }
       `}</style>
     </main>

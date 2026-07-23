@@ -5,6 +5,11 @@ import { motion } from "motion/react";
 import { House, ArrowLeft } from "@phosphor-icons/react";
 
 export default function NotFound() {
+  useEffect(() => {
+    document.title = "404 — Page Not Found | Komron Khidoyatov Portfolio";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.content = "Page not found — Komron Khidoyatov (Xidoyatov Komron), frontend developer from Tashkent, Uzbekistan. Return to the homepage to view my portfolio.";
+  }, []);
   const { t } = useTranslation();
 
   useEffect(() => {

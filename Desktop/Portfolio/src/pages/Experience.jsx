@@ -186,9 +186,52 @@ export default function Experience() {
       </section>
 
       <style>{`
-        @media (max-width: 1024px) { .exp-hero-grid { grid-template-columns: 1fr !important; } .exp-ctas { justify-content: flex-start !important; } }
-        @media (max-width: 768px) { .fun-facts-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-        @media (max-width: 480px) { .fun-facts-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-md) !important; } }
+        @media (max-width: 1024px) { 
+          .exp-hero-grid { grid-template-columns: 1fr !important; gap: var(--space-xl) !important; } 
+          .exp-ctas { justify-content: flex-start !important; flex-wrap: wrap; } 
+          .exp-hero-grid h1 { max-width: none !important; }
+          .exp-hero-grid p { max-width: none !important; }
+        }
+        @media (max-width: 768px) { 
+          .fun-facts-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-md) !important; }
+          .fun-facts-grid > div { padding: var(--space-lg) !important; }
+          .exp-ctas a, .exp-ctas button { width: 100%; justify-content: center; }
+          .exp-ctas { flex-direction: column; width: 100%; }
+          .exp-ctas a, .exp-ctas button { width: 100%; text-align: center; justify-content: center; }
+          [style*="width: fit-content"][style*="border-radius: var(--radius-full)"] { 
+            width: 100% !important; 
+            overflow-x: auto;
+            flex-wrap: nowrap !important;
+          }
+          [style*="width: fit-content"][style*="border-radius: var(--radius-full)"] button { 
+            white-space: nowrap; 
+            flex-shrink: 0;
+            padding: 10px 18px !important;
+            font-size: 0.8rem !important;
+          }
+          .timeline-item { padding-left: 32px !important; }
+          .timeline-item > div:first-child { padding: var(--space-lg) !important; }
+        }
+        @media (max-width: 480px) { 
+          .fun-facts-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-sm) !important; }
+          .fun-facts-grid > div { padding: var(--space-md) !important; }
+          .fun-facts-grid > div div:first-child { font-size: clamp(1.25rem, 4vw, 1.75rem) !important; }
+          .timeline-item > div:first-child { padding: var(--space-md) var(--space-lg) !important; }
+          .timeline-item h3 { font-size: 1rem !important; }
+          .timeline-item p { font-size: 0.8rem !important; }
+          .timeline-item li { font-size: 0.8rem !important; }
+          .timeline-item span[style*="mono"] { font-size: 0.7rem !important; }
+          .timeline-header span[style*="white-space: nowrap"] { 
+            white-space: normal !important; 
+            font-size: 0.7rem !important; 
+            padding: 4px 10px !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .timeline-item { padding-left: 28px !important; }
+          .timeline-item > div:first-child { padding: var(--space-sm) var(--space-md) !important; }
+          .fun-facts-grid > div { padding: var(--space-sm) !important; }
+        }
       `}</style>
     </main>
   );
