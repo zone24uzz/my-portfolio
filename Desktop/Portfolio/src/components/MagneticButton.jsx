@@ -1,37 +1,31 @@
-import { useRef } from "react";
-import { motion, useMotionValue, useTransform } from "motion/react";
+import { useRef, useEffect, useState } from "react";
+import { useMotion } from "../utils/motion";
 
 export default function MagneticButton({ children, className = "", as = "div", ...props }) {
   const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const { motion } = useMotion();
 
-  const handleMouseMove = (e) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const distX = e.clientX - centerX;
-    const distY = e.clientY - centerY;
-    const strength = 0.25;
-    x.set(distX * strength);
-    y.set(distY * strength);
-  };
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+  // On touch devices, render a plain element to avoid motion overhead
+  if (isTouchDevice) {
+    const Tag = as;
+    return (
+      <Tag ref={ref} className={className} {...props}>
+        {children}
+      </Tag>
+    );
+  }
 
-  const Component = as === "button" ? motion.button : motion.div;
+  const M = motion || { div: 'div', button: 'button' };
+  const Component = as === "button" ? M.button : M.div;
 
   return (
     <Component
       ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ x, y }}
       className={className}
       {...props}
     >

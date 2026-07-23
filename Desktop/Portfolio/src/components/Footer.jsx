@@ -63,7 +63,7 @@ export default function Footer() {
               }}
             >
               <img
-                src="/logo.png"
+                src="/logo.webp"
                 alt="Komron Xidoyatov"
                 width="42"
                 height="42"

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { motion, useScroll, useSpring, useAnimationControls } from "motion/react";
 import { useEffect, useState, lazy, Suspense, useRef } from "react";
 import { CaretUp } from "@phosphor-icons/react";
+import { MotionProvider, useMotion } from "./utils/motion";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -18,15 +18,19 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollProgress() {
+  const { useScroll, useSpring, motion, isDesktop } = useMotion();
   const { scrollYProgress } = useScroll();
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 80,
     damping: 20,
-    restDelta: 0.001,
+    restDelta: 0.01,
   });
+  const MotionDiv = motion.div || 'div';
+
+  if (!isDesktop) return null;
 
   return (
-    <motion.div
+    <MotionDiv
       style={{
         position: "fixed",
         top: 0,
@@ -44,30 +48,82 @@ function ScrollProgress() {
 }
 
 function BackToTop() {
-  const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(false);
+  const { motion, isDesktop } = useMotion();
 
+  // Simple scroll listener with rAF throttling (no motion useScroll)
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (v) => {
-      setVisible(v > 0.15);
-    });
-    return () => unsubscribe();
-  }, [scrollYProgress]);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setVisible(window.scrollY > window.innerHeight * 0.15);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  if (isDesktop) {
+    const MotionBtn = motion.button || 'button';
+    return (
+      <MotionBtn
+        onClick={scrollToTop}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{
+          opacity: visible ? 1 : 0,
+          scale: visible ? 1 : 0.8,
+          y: visible ? 0 : 10,
+        }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          position: "fixed",
+          bottom: "32px",
+          right: "32px",
+          zIndex: 900,
+          width: 44,
+          height: 44,
+          borderRadius: "var(--radius-full)",
+          border: "1px solid var(--color-border)",
+          backgroundColor: "var(--color-bg-secondary)",
+          color: "var(--color-text-muted)",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+          transition: "color 300ms, border-color 300ms, box-shadow 300ms",
+          pointerEvents: visible ? "auto" : "none",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = "var(--color-accent-400)";
+          e.currentTarget.style.color = "var(--color-accent-400)";
+          e.currentTarget.style.boxShadow = "0 0 20px var(--color-accent-glow-strong)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = "var(--color-border)";
+          e.currentTarget.style.color = "var(--color-text-muted)";
+          e.currentTarget.style.boxShadow = "none";
+        }}
+        aria-label="Scroll to top"
+      >
+        <CaretUp size={18} weight="bold" />
+      </MotionBtn>
+    );
+  }
+
   return (
-    <motion.button
+    <button
       onClick={scrollToTop}
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{
-        opacity: visible ? 1 : 0,
-        scale: visible ? 1 : 0.8,
-        y: visible ? 0 : 10,
-      }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       style={{
         position: "fixed",
         bottom: "32px",
@@ -83,34 +139,26 @@ function BackToTop() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-        transition: "color 300ms, border-color 300ms, box-shadow 300ms",
+        opacity: visible ? 0.9 : 0,
+        transition: "opacity 300ms",
         pointerEvents: visible ? "auto" : "none",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "var(--color-accent-400)";
-        e.currentTarget.style.color = "var(--color-accent-400)";
-        e.currentTarget.style.boxShadow = "0 0 20px var(--color-accent-glow-strong)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "var(--color-border)";
-        e.currentTarget.style.color = "var(--color-text-muted)";
-        e.currentTarget.style.boxShadow = "none";
       }}
       aria-label="Scroll to top"
     >
       <CaretUp size={18} weight="bold" />
-    </motion.button>
+    </button>
   );
 }
 
 function AnimatedRoutes() {
   const location = useLocation();
   const [pageReady, setPageReady] = useState(true);
+  const [curtainActive, setCurtainActive] = useState(false);
+  const { motion, useAnimationControls, isDesktop } = useMotion();
   const curtainControls = useAnimationControls();
   const prevPathRef = useRef(location.pathname);
   const isAnimatingRef = useRef(false);
+  const MotionDiv = motion.div || 'div';
 
   useEffect(() => {
     const prevPath = prevPathRef.current;
@@ -119,6 +167,7 @@ function AnimatedRoutes() {
     if (prevPath !== location.pathname && !isAnimatingRef.current) {
       isAnimatingRef.current = true;
       setPageReady(false);
+      setCurtainActive(true);
       runCurtainAnimation();
     }
   }, [location]);
@@ -131,8 +180,6 @@ function AnimatedRoutes() {
     );
 
     // Phase 2: short pause to let the new lazy chunk render behind the curtain
-    // React Router + React.lazy swap the page instantly on location change
-    // This small wait ensures the component has mounted behind the curtain
     await new Promise((r) => setTimeout(r, 80));
 
     // Phase 3: curtain slides out to the right, revealing the new page
@@ -141,9 +188,12 @@ function AnimatedRoutes() {
       { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
     );
 
-    // Phase 4: reset curtain position & allow page entrance animations
+    // Phase 4: reset curtain position
     curtainControls.set({ x: "-100%" });
     setPageReady(true);
+    // Small delay before hiding shimmer to let curtain fully settle
+    await new Promise((r) => setTimeout(r, 50));
+    setCurtainActive(false);
     isAnimatingRef.current = false;
   }
 
@@ -168,7 +218,7 @@ function AnimatedRoutes() {
       </div>
 
       {/* Page transition curtain — slides left→center, then right→out */}
-      <motion.div
+      <MotionDiv
         animate={curtainControls}
         initial={{ x: "-100%" }}
         style={{
@@ -219,29 +269,29 @@ function AnimatedRoutes() {
           <rect width="100%" height="100%" fill="url(#curtainPattern)" />
         </svg>
 
-        {/* Shimmer glow */}
-        <motion.div
-          animate={{
-            x: ["-100%", "200%"],
-          }}
-          transition={{
-            duration: 1.2,
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatDelay: 0.5,
-          }}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "30%",
-            height: "100%",
-            background:
-              "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
-            transform: "skewX(-20deg)",
-          }}
-        />
-      </motion.div>
+        {/* Shimmer glow - only rendered during page transitions */}
+        {curtainActive ? (
+          <MotionDiv
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{
+              duration: 1.2,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatDelay: 0.5,
+            }}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "30%",
+              height: "100%",
+              background:
+                "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+              transform: "skewX(-20deg)",
+            }}
+          />
+        ) : null}
+      </MotionDiv>
     </>
   );
 }
@@ -276,20 +326,22 @@ function SkipLink() {
 
 export default function App() {
   return (
-    <Router>
-      <SkipLink />
-      <ScrollProgress />
-      <BackToTop />
-      <div className="noise-overlay" />
-      <div className="bg-orbs" aria-hidden="true">
-        <div className="bg-orb bg-orb--1" />
-        <div className="bg-orb bg-orb--2" />
-        <div className="bg-orb bg-orb--3" />
-      </div>
-      <ScrollToTop />
-      <Header />
-      <AnimatedRoutes />
-      <Footer />
-    </Router>
+    <MotionProvider>
+      <Router>
+        <SkipLink />
+        <ScrollProgress />
+        <BackToTop />
+        <div className="noise-overlay" />
+        <div className="bg-orbs" aria-hidden="true">
+          <div className="bg-orb bg-orb--1" />
+          <div className="bg-orb bg-orb--2" />
+          <div className="bg-orb bg-orb--3" />
+        </div>
+        <ScrollToTop />
+        <Header />
+        <AnimatedRoutes />
+        <Footer />
+      </Router>
+    </MotionProvider>
   );
 }

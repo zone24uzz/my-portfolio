@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "motion/react";
+import { useMotion } from "../utils/motion";
 import { CaretRight, Funnel, X } from "@phosphor-icons/react";
 import ProjectCard from "../components/ProjectCard";
 
@@ -13,21 +13,23 @@ const categories = [
 ];
 
 const projects = [
-  { titleKey: "projects.keyronTitle", descKey: "projects.keyronDesc", category: "Web App", tags: ["React", "TailwindCSS", "Vite"], year: "2025", link: "https://testkeyron-vifj.vercel.app/", image: "/images/project-keyron.jpg" },
-  { titleKey: "projects.velocityTitle", descKey: "projects.velocityDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://velocity-blush-gamma.vercel.app/", image: "/images/project-velocity.jpg" },
-  { titleKey: "projects.indoreTitle", descKey: "projects.indoreDesc", category: "Web App", tags: ["HTML", "TailwindCSS", "JavaScript"], year: "2025", link: "https://plant-website-tailwindcss-main.vercel.app/", image: "/images/project-indore.jpg" },
-  { titleKey: "projects.fastfoodTitle", descKey: "projects.fastfoodDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://burger-landing-one.vercel.app/", image: "/images/project-fastfood.jpg" },
-  { titleKey: "projects.abcAutoTitle", descKey: "projects.abcAutoDesc", category: "Web App", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://abc-auto-xidoyatovvv.vercel.app/", image: "/images/project-abcauto.png" },
-  { titleKey: "projects.sansiroTitle", descKey: "projects.sansiroDesc", category: "Web App", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://sansiro-online-shop.vercel.app/", image: "/images/project-sansiro.png" },
-  { titleKey: "projects.eliasTitle", descKey: "projects.eliasDesc", category: "Web Design", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://komton-neon.vercel.app/", image: "/images/project-elias.png" },
-  { titleKey: "projects.autokranTitle", descKey: "projects.autokranDesc", category: "Web App", tags: ["React", "TailwindCSS", "JavaScript", "SEO", "Git"], year: "2025", link: "https://www.autokran.uz/", image: "/images/project-autokran.png" },
-  { titleKey: "projects.dayworkTitle", descKey: "projects.dayworkDesc", category: "Design System", tags: ["Figma", "Auto Layout", "Design System", "UI Kit"], year: "2026", link: "https://www.figma.com/design/xNBQcEy1buW9bLNvFuGglJ/DayWork-Figma?node-id=0-1&t=RQKWuNMOh9s2PyWV-1", image: "/images/project-daywork.jpg" },
-  { titleKey: "projects.statuscodesTitle", descKey: "projects.statuscodesDesc", category: "Web App", tags: ["React", "TailwindCSS", "JavaScript"], year: "2026", link: "https://status-codes-nine.vercel.app/", image: "/images/project-statuscodes.png" },
-  { titleKey: "projects.spotifyTitle", descKey: "projects.spotifyDesc", category: "Web App", tags: ["React", "TailwindCSS", "Vite"], year: "2026", link: "https://spotify-clone-one-kohl.vercel.app/", image: "/images/project-spotify.jpg" },
+  { titleKey: "projects.keyronTitle", descKey: "projects.keyronDesc", category: "Web App", tags: ["React", "TailwindCSS", "Vite"], year: "2025", link: "https://testkeyron-vifj.vercel.app/", image: "/images/project-keyron.webp" },
+  { titleKey: "projects.velocityTitle", descKey: "projects.velocityDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://velocity-blush-gamma.vercel.app/", image: "/images/project-velocity.webp" },
+  { titleKey: "projects.indoreTitle", descKey: "projects.indoreDesc", category: "Web App", tags: ["HTML", "TailwindCSS", "JavaScript"], year: "2025", link: "https://plant-website-tailwindcss-main.vercel.app/", image: "/images/project-indore.webp" },
+  { titleKey: "projects.fastfoodTitle", descKey: "projects.fastfoodDesc", category: "Web Design", tags: ["HTML", "CSS"], year: "2025", link: "https://burger-landing-one.vercel.app/", image: "/images/project-fastfood.webp" },
+  { titleKey: "projects.abcAutoTitle", descKey: "projects.abcAutoDesc", category: "Web App", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://abc-auto-xidoyatovvv.vercel.app/", image: "/images/project-abcauto.webp" },
+  { titleKey: "projects.sansiroTitle", descKey: "projects.sansiroDesc", category: "Web App", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://sansiro-online-shop.vercel.app/", image: "/images/project-sansiro.webp" },
+  { titleKey: "projects.eliasTitle", descKey: "projects.eliasDesc", category: "Web Design", tags: ["React", "JavaScript", "TailwindCSS", "Git"], year: "2025", link: "https://komton-neon.vercel.app/", image: "/images/project-elias.webp" },
+  { titleKey: "projects.autokranTitle", descKey: "projects.autokranDesc", category: "Web App", tags: ["React", "TailwindCSS", "JavaScript", "SEO", "Git"], year: "2025", link: "https://www.autokran.uz/", image: "/images/project-autokran.webp" },
+  { titleKey: "projects.dayworkTitle", descKey: "projects.dayworkDesc", category: "Design System", tags: ["Figma", "Auto Layout", "Design System", "UI Kit"], year: "2026", link: "https://www.figma.com/design/xNBQcEy1buW9bLNvFuGglJ/DayWork-Figma?node-id=0-1&t=RQKWuNMOh9s2PyWV-1", image: "/images/project-daywork.webp" },
+  { titleKey: "projects.statuscodesTitle", descKey: "projects.statuscodesDesc", category: "Web App", tags: ["React", "TailwindCSS", "JavaScript"], year: "2026", link: "https://status-codes-nine.vercel.app/", image: "/images/project-statuscodes.webp" },
+  { titleKey: "projects.spotifyTitle", descKey: "projects.spotifyDesc", category: "Web App", tags: ["React", "TailwindCSS", "Vite"], year: "2026", link: "https://spotify-clone-one-kohl.vercel.app/", image: "/images/project-spotify.webp" },
 ];
 
 export default function Projects() {
   const { t } = useTranslation();
+  const { motion } = useMotion();
+  const M = motion || { div: 'div', button: 'button' };
   const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function Projects() {
           >
             {t("projects.label")}
           </motion.span>
-          <motion.div
+          <M.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -67,20 +69,20 @@ export default function Projects() {
               </h1>
               <p style={{ fontSize: "1.05rem", maxWidth: "480px" }}>{t("projects.subtitle")}</p>
             </div>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <M.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link to="/contact" className="btn-primary">
                 {t("projects.startProject")}
                 <CaretRight size={16} weight="bold" />
               </Link>
-            </motion.div>
-          </motion.div>
+            </M.div>
+          </M.div>
         </div>
       </section>
 
       {/* Filter Bar */}
       <section style={{ paddingBottom: "var(--space-2xl)" }}>
         <div className="section-container">
-          <motion.div
+          <M.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -143,14 +145,14 @@ export default function Projects() {
                 {t("projects.clear")}
               </button>
             )}
-          </motion.div>
+          </M.div>
         </div>
       </section>
 
       {/* Projects Grid */}
       <section className="section-padding" style={{ paddingTop: 0 }}>
         <div className="section-container">
-          <motion.div
+          <M.div
             key={activeCategory}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -175,14 +177,14 @@ export default function Projects() {
                 </button>
               </div>
             )}
-          </motion.div>
+          </M.div>
         </div>
       </section>
 
       {/* Stats Strip */}
       <section style={{ borderTop: "1px solid var(--color-border)", padding: "var(--space-3xl) 0" }}>
         <div className="section-container">
-          <motion.div
+          <M.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -196,16 +198,16 @@ export default function Projects() {
               { value: "8", labelKey: "projects.technologies" },
               { value: "100%", labelKey: "projects.passion" },
             ].map((stat) => (
-              <motion.div key={stat.labelKey} whileHover={{ scale: 1.05 }}>
+              <M.div key={stat.labelKey} whileHover={{ scale: 1.05 }}>
                 <div style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", fontWeight: 700, color: "var(--color-text-primary)", lineHeight: 1.1, marginBottom: "4px" }}>
                   {stat.value}
                 </div>
                 <div style={{ fontSize: "0.85rem", color: "var(--color-text-muted)", fontFamily: "var(--font-body)" }}>
                   {t(stat.labelKey)}
                 </div>
-              </motion.div>
+              </M.div>
             ))}
-          </motion.div>
+          </M.div>
         </div>
       </section>
 

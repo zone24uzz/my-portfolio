@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "motion/react";
+import { useMotion } from "../utils/motion";
 import { ArrowRight, Code, Database, PlugsConnected, Devices, Brain, GitBranch } from "@phosphor-icons/react";
 import SkillBar from "../components/SkillBar";
 
@@ -37,6 +37,8 @@ const quickFacts = [
 
 export default function About() {
   const { t } = useTranslation();
+  const { motion } = useMotion();
+  const M = motion || { div: 'div', span: 'span' };
   const [visibleSections, setVisibleSections] = useState({});
   const sectionRefs = useRef({});
 
@@ -65,25 +67,25 @@ export default function About() {
     <main>
       {/* Hero Section */}
       <section style={{ paddingTop: "140px", paddingBottom: "var(--space-4xl)", position: "relative", overflow: "hidden" }}>
-        <motion.div
+        <M.div
           animate={{ scale: [1, 1.05, 1], opacity: [0.04, 0.08, 0.04] }}
           transition={{ duration: 8, repeat: Infinity }}
           style={{ position: "absolute", top: "-10%", right: "-5%", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(255, 255, 255, 0.04), transparent 70%)", pointerEvents: "none" }}
         />
 
         <div className="section-container" style={{ position: "relative", zIndex: 1 }}>
-          <motion.span
+          <M.span
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="section-label"
           >
             {t("about.label")}
-          </motion.span>
+          </M.span>
 
           <div className="about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4xl)", alignItems: "center" }}>
             {/* Left - Text */}
-            <motion.div
+            <M.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -98,7 +100,7 @@ export default function About() {
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-md)" }} className="quick-facts">
                 {quickFacts.map((fact) => (
-                  <motion.div
+                  <M.div
                     key={fact.labelKey}
                     whileHover={{ scale: 1.02, borderColor: "rgba(255, 255, 255, 0.15)" }}
                     style={{ padding: "var(--space-md)", borderRadius: "var(--radius-md)", backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)" }}
@@ -109,13 +111,13 @@ export default function About() {
                     <div style={{ fontFamily: "var(--font-body)", fontSize: "0.9rem", fontWeight: 500, color: "var(--color-text-primary)" }}>
                       {t(fact.valueKey)}
                     </div>
-                  </motion.div>
+                  </M.div>
                 ))}
               </div>
-            </motion.div>
+            </M.div>
 
             {/* Right - Photo */}
-            <motion.div
+            <M.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
@@ -123,7 +125,7 @@ export default function About() {
               style={{ position: "relative", display: "flex", justifyContent: "center" }}
             >
               <div style={{ position: "relative", width: "100%", maxWidth: "420px", aspectRatio: "3/4", borderRadius: "var(--radius-2xl)", overflow: "hidden", border: "1px solid var(--color-border)", backgroundColor: "var(--color-bg-secondary)", boxShadow: "var(--shadow-lg)" }}>
-                <img src="/images/IMG_1355.jpg" alt="Komron Khidoyatov — Frontend Developer Portfolio" loading="lazy" width="420" height="560" decoding="async" className="img-fade-in" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/images/IMG_1355.webp" alt="Komron Khidoyatov — Frontend Developer Portfolio" loading="lazy" width="420" height="560" decoding="async" className="img-fade-in" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "var(--space-xl)", background: "linear-gradient(to top, rgba(11, 16, 36, 0.9), transparent)" }}>
                   <span style={{ color: "var(--color-text-primary)", fontFamily: "var(--font-mono)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.6 }}>
                     {t("about.creativeDev")}
@@ -135,13 +137,13 @@ export default function About() {
               </div>
 
               {/* Floating badge */}
-              <motion.div
+              <M.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 style={{ position: "absolute", bottom: "40px", right: "-20px", padding: "12px 20px", borderRadius: "var(--radius-lg)", backgroundColor: "var(--color-card-bg)", backdropFilter: "blur(16px)", border: "1px solid var(--color-border)", boxShadow: "var(--shadow-lg)", display: "flex", alignItems: "center", gap: "10px" }}
                 className="floating-badge"
               >
-                <motion.span
+                <M.span
                   animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                   style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "var(--color-text-primary)", opacity: 0.8 }}
@@ -149,8 +151,8 @@ export default function About() {
                 <span style={{ fontFamily: "var(--font-subheading)", fontSize: "0.8rem", fontWeight: 600, color: "var(--color-text-primary)" }}>
                   {t("about.availableWork")}
                 </span>
-              </motion.div>
-            </motion.div>
+              </M.div>
+            </M.div>
           </div>
         </div>
       </section>
@@ -158,7 +160,7 @@ export default function About() {
       {/* Expertise Section */}
       <section ref={(el) => (sectionRefs.current.expertise = el)} className="section-padding" style={{ borderTop: "1px solid var(--color-border)" }}>
         <div className="section-container">
-          <motion.div
+          <M.div
             initial={{ opacity: 0, y: 20 }}
             animate={visibleSections.expertise ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
@@ -169,13 +171,13 @@ export default function About() {
               {t("about.expertiseTitle")} <span className="gradient-text">{t("about.expertiseHighlight")}</span>
             </h2>
             <p style={{ fontSize: "0.95rem", marginTop: "var(--space-md)" }}>{t("about.expertiseDesc")}</p>
-          </motion.div>
+          </M.div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "var(--space-xl)" }} className="expertise-grid">
             {expertiseKeys.map((item, i) => {
               const IconComponent = item.icon;
               return (
-                <motion.div
+                <M.div
                   key={item.titleKey}
                   initial={{ opacity: 0, y: 30 }}
                   animate={visibleSections.expertise ? { opacity: 1, y: 0 } : {}}
@@ -183,18 +185,18 @@ export default function About() {
                   whileHover={{ y: -6, borderColor: "rgba(255, 255, 255, 0.15)" }}
                   style={{ padding: "var(--space-2xl)", borderRadius: "var(--radius-xl)", backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)", transition: "border-color 0.4s" }}
                 >
-                  <motion.div
+                  <M.div
                     whileHover={{ rotate: [0, -10, 10, 0] }}
                     transition={{ duration: 0.5 }}
                     style={{ width: 48, height: 48, borderRadius: "var(--radius-lg)", backgroundColor: "rgba(255, 255, 255, 0.06)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "var(--space-lg)" }}
                   >
                     <IconComponent size={24} weight="bold" style={{ color: "var(--color-text-primary)" }} />
-                  </motion.div>
+                  </M.div>
                   <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.1rem", fontWeight: 600, color: "var(--color-text-primary)", marginBottom: "var(--space-sm)", letterSpacing: "-0.02em" }}>
                     {t(item.titleKey)}
                   </h3>
                   <p style={{ fontSize: "0.85rem", lineHeight: 1.7 }}>{t(item.descKey)}</p>
-                </motion.div>
+                </M.div>
               );
             })}
           </div>
@@ -205,7 +207,7 @@ export default function About() {
       <section ref={(el) => (sectionRefs.current.skills = el)} className="section-padding" style={{ borderTop: "1px solid var(--color-border)" }}>
         <div className="section-container">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4xl)" }} className="skills-grid">
-            <motion.div
+            <M.div
               initial={{ opacity: 0, y: 20 }}
               animate={visibleSections.skills ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
@@ -234,9 +236,9 @@ export default function About() {
                 {t("about.skillsAction")}
                 <ArrowRight size={16} weight="bold" />
               </Link>
-            </motion.div>
+            </M.div>
 
-            <motion.div
+            <M.div
               initial={{ opacity: 0, y: 20 }}
               animate={visibleSections.skills ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -244,7 +246,7 @@ export default function About() {
               {skills.map((skill, i) => (
                 <SkillBar key={skill.name} name={skill.name} level={skill.level} index={i} />
               ))}
-            </motion.div>
+            </M.div>
           </div>
         </div>
       </section>

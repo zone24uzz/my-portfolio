@@ -1,6 +1,9 @@
-import { motion } from "motion/react";
+import { useMotion } from "../utils/motion";
 
 export default function PageLoader() {
+  const { motion } = useMotion();
+  const M = motion || { div: 'div', p: 'p' };
+
   return (
     <div
       style={{
@@ -14,7 +17,7 @@ export default function PageLoader() {
       }}
     >
       {/* Animated logo placeholder */}
-      <motion.div
+      <M.div
         animate={{ scale: [1, 1.15, 1], opacity: [0.4, 1, 0.4] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         style={{
@@ -24,7 +27,7 @@ export default function PageLoader() {
           background: "linear-gradient(135deg, var(--color-accent-400), var(--color-accent-500))",
         }}
       />
-      <motion.p
+      <M.p
         animate={{ opacity: [0.3, 0.8, 0.3] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         style={{
@@ -35,7 +38,7 @@ export default function PageLoader() {
         }}
       >
         Loading...
-      </motion.p>
+      </M.p>
     </div>
   );
 }

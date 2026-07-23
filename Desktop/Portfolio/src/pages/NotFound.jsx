@@ -1,16 +1,13 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "motion/react";
+import { useMotion } from "../utils/motion";
 import { House, ArrowLeft } from "@phosphor-icons/react";
 
 export default function NotFound() {
-  useEffect(() => {
-    document.title = "404 — Page Not Found | Komron Khidoyatov Portfolio";
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.content = "Page not found — Komron Khidoyatov (Xidoyatov Komron), frontend developer from Tashkent, Uzbekistan. Return to the homepage to view my portfolio.";
-  }, []);
   const { t } = useTranslation();
+  const { motion } = useMotion();
+  const M = motion || { div: 'div', h2: 'h2', p: 'p' };
 
   useEffect(() => {
     document.title = "404 — Page Not Found | Komron Khidoyatov Portfolio";
@@ -29,7 +26,7 @@ export default function NotFound() {
         overflow: "hidden",
       }}
     >
-      <motion.div
+      <M.div
         animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.08, 0.05] }}
         transition={{ duration: 6, repeat: Infinity }}
         style={{
@@ -46,7 +43,7 @@ export default function NotFound() {
       />
 
       <div className="section-container" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
-        <motion.div
+        <M.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
@@ -64,9 +61,9 @@ export default function NotFound() {
           }}
         >
           404
-        </motion.div>
+        </M.div>
 
-        <motion.h2
+        <M.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -80,9 +77,9 @@ export default function NotFound() {
           }}
         >
           {t("notFound.title")}
-        </motion.h2>
+        </M.h2>
 
-        <motion.p
+        <M.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -94,27 +91,27 @@ export default function NotFound() {
           }}
         >
           {t("notFound.subtitle")}
-        </motion.p>
+        </M.p>
 
-        <motion.div
+        <M.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           style={{ display: "flex", gap: "var(--space-md)", justifyContent: "center", flexWrap: "wrap" }}
         >
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+          <M.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link to="/" className="btn-primary">
               <House size={18} weight="bold" />
               {t("notFound.backHome")}
             </Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+          </M.div>
+          <M.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <button onClick={() => window.history.back()} className="btn-secondary">
               <ArrowLeft size={18} weight="bold" />
               {t("notFound.goBack")}
             </button>
-          </motion.div>
-        </motion.div>
+          </M.div>
+        </M.div>
       </div>
     </main>
   );

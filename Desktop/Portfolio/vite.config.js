@@ -23,7 +23,6 @@ export default defineConfig({
         },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name;
-          // Keep font files in a separate directory for better caching
           if (name.endsWith('.woff') || name.endsWith('.woff2') || name.endsWith('.ttf') || name.endsWith('.eot')) {
             return 'assets/fonts/[name]-[hash][extname]';
           }
@@ -31,11 +30,10 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 350,
+    chunkSizeWarningLimit: 500,
     target: 'es2020',
     sourcemap: false,
-    cssCodeSplit: false,
-    reportCompressedSize: true,
+    cssCodeSplit: true,
   },
   server: {
     headers: {

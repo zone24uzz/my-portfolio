@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "motion/react";
+import { useMotion } from "../utils/motion";
 import {
   PaperPlaneTilt,
   GithubLogo,
@@ -22,6 +22,8 @@ const socialLinks = [
 
 export default function Contact() {
   const { t } = useTranslation();
+  const { motion, AnimatePresence } = useMotion();
+  const M = motion || { div: 'div', a: 'a', button: 'button', input: 'input', textarea: 'textarea' };
   const [formState, setFormState] = useState({ name: "", email: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -91,7 +93,7 @@ export default function Contact() {
     <main>
       {/* Hero */}
       <section style={{ paddingTop: "140px", paddingBottom: "var(--space-4xl)", position: "relative" }}>
-        <motion.div
+        <M.div
           animate={{ scale: [1, 1.05, 1], opacity: [0.05, 0.08, 0.05] }}
           transition={{ duration: 8, repeat: Infinity }}
           style={{ position: "absolute", top: "-15%", left: "-5%", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%)", pointerEvents: "none" }}
@@ -100,7 +102,7 @@ export default function Contact() {
           <motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="section-label">
             {t("contact.label")}
           </motion.span>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+          <M.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
             className="contact-hero-grid"
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4xl)" }}
           >
@@ -110,7 +112,7 @@ export default function Contact() {
               </h1>
               <p style={{ fontSize: "1.05rem", maxWidth: "480px", lineHeight: 1.8 }}>{t("contact.subtitle")}</p>
             </div>
-          </motion.div>
+          </M.div>
         </div>
       </section>
 
@@ -119,7 +121,7 @@ export default function Contact() {
         <div className="section-container">
           <div className="contact-content-grid" style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: "var(--space-3xl)", alignItems: "start" }}>
             {/* Form */}
-            <motion.div
+            <M.div
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
@@ -127,7 +129,7 @@ export default function Contact() {
             >
               <AnimatePresence mode="wait">
                 {isSubmitted ? (
-                  <motion.div
+                  <M.div
                     key="success"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -135,22 +137,22 @@ export default function Contact() {
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     style={{ textAlign: "center", padding: "var(--space-4xl) var(--space-xl)" }}
                   >
-                    <motion.div
+                    <M.div
                       initial={{ rotate: -30, opacity: 0 }}
                       animate={{ rotate: 0, opacity: 1 }}
                       transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
                       style={{ width: 64, height: 64, borderRadius: "var(--radius-full)", backgroundColor: "rgba(255, 255, 255, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto var(--space-lg)" }}
                     >
                       <CheckCircle size={32} weight="fill" style={{ color: "var(--color-accent-400)" }} />
-                    </motion.div>
+                    </M.div>
                     <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", fontWeight: 600, color: "var(--color-text-primary)", marginBottom: "var(--space-md)", letterSpacing: "-0.02em" }}>
                       {t("contact.successTitle")}
                     </h2>
                     <p style={{ fontSize: "0.95rem", margin: "0 auto var(--space-xl)", maxWidth: "400px" }}>{t("contact.successDesc")}</p>
-                    <motion.button onClick={() => setIsSubmitted(false)} className="btn-secondary" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    <M.button onClick={() => setIsSubmitted(false)} className="btn-secondary" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                       {t("contact.sendAnother")}
-                    </motion.button>
-                  </motion.div>
+                    </M.button>
+                  </M.div>
                 ) : (
                   <motion.form
                     key="form"
@@ -165,13 +167,13 @@ export default function Contact() {
                         <label htmlFor="name" style={{ fontFamily: "var(--font-body)", fontSize: "0.85rem", fontWeight: 500, color: "var(--color-text-primary)", marginBottom: "6px", display: "block" }}>
                           {t("contact.yourName")}
                         </label>
-                        <motion.input whileFocus={{ scale: 1.01 }} type="text" id="name" name="name" value={formState.name} onChange={handleChange} onFocus={() => setFocusedField("name")} onBlur={() => setFocusedField(null)} required placeholder="John Doe" style={inputStyle("name")} />
+                        <M.input whileFocus={{ scale: 1.01 }} type="text" id="name" name="name" value={formState.name} onChange={handleChange} onFocus={() => setFocusedField("name")} onBlur={() => setFocusedField(null)} required placeholder="John Doe" style={inputStyle("name")} />
                       </div>
                       <div>
                         <label htmlFor="email" style={{ fontFamily: "var(--font-body)", fontSize: "0.85rem", fontWeight: 500, color: "var(--color-text-primary)", marginBottom: "6px", display: "block" }}>
                           {t("contact.yourEmail")}
                         </label>
-                        <motion.input whileFocus={{ scale: 1.01 }} type="email" id="email" name="email" value={formState.email} onChange={handleChange} onFocus={() => setFocusedField("email")} onBlur={() => setFocusedField(null)} required placeholder="john@example.com" style={inputStyle("email")} />
+                        <M.input whileFocus={{ scale: 1.01 }} type="email" id="email" name="email" value={formState.email} onChange={handleChange} onFocus={() => setFocusedField("email")} onBlur={() => setFocusedField(null)} required placeholder="john@example.com" style={inputStyle("email")} />
                       </div>
                     </div>
 
@@ -179,19 +181,19 @@ export default function Contact() {
                       <label htmlFor="subject" style={{ fontFamily: "var(--font-body)", fontSize: "0.85rem", fontWeight: 500, color: "var(--color-text-primary)", marginBottom: "6px", display: "block" }}>
                         {t("contact.subject")}
                       </label>
-                      <motion.input whileFocus={{ scale: 1.01 }} type="text" id="subject" name="subject" value={formState.subject} onChange={handleChange} onFocus={() => setFocusedField("subject")} onBlur={() => setFocusedField(null)} required placeholder={t("contact.subjectPlaceholder")} style={inputStyle("subject")} />
+                      <M.input whileFocus={{ scale: 1.01 }} type="text" id="subject" name="subject" value={formState.subject} onChange={handleChange} onFocus={() => setFocusedField("subject")} onBlur={() => setFocusedField(null)} required placeholder={t("contact.subjectPlaceholder")} style={inputStyle("subject")} />
                     </div>
 
                     <div>
                       <label htmlFor="message" style={{ fontFamily: "var(--font-body)", fontSize: "0.85rem", fontWeight: 500, color: "var(--color-text-primary)", marginBottom: "6px", display: "block" }}>
                         {t("contact.message")}
                       </label>
-                      <motion.textarea whileFocus={{ scale: 1.01 }} id="message" name="message" value={formState.message} onChange={handleChange} onFocus={() => setFocusedField("message")} onBlur={() => setFocusedField(null)} required rows={5} placeholder={t("contact.messagePlaceholder")}
+                      <M.textarea whileFocus={{ scale: 1.01 }} id="message" name="message" value={formState.message} onChange={handleChange} onFocus={() => setFocusedField("message")} onBlur={() => setFocusedField(null)} required rows={5} placeholder={t("contact.messagePlaceholder")}
                         style={{ ...inputStyle("message"), resize: "vertical", minHeight: "120px" }}
                       />
                     </div>
 
-                    <motion.button type="submit" disabled={isSubmitting} className="btn-primary" style={{ alignSelf: "flex-start", opacity: isSubmitting ? 0.8 : 1 }}
+                    <M.button type="submit" disabled={isSubmitting} className="btn-primary" style={{ alignSelf: "flex-start", opacity: isSubmitting ? 0.8 : 1 }}
                       whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
                     >
                       {isSubmitting ? (
@@ -199,16 +201,16 @@ export default function Contact() {
                       ) : (
                         <>{t("contact.sendMessage")}<PaperPlaneTilt size={18} weight="bold" /></>
                       )}
-                    </motion.button>
+                    </M.button>
                   </motion.form>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </M.div>
 
             {/* Contact Info & Social */}
             <div>
               {/* Contact Details */}
-              <motion.div
+              <M.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
@@ -238,10 +240,10 @@ export default function Contact() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </M.div>
 
               {/* Social Links */}
-              <motion.div
+              <M.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -252,7 +254,7 @@ export default function Contact() {
                 </h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-md)" }}>
                   {socialLinks.map((social) => (
-                    <motion.a
+                    <M.a
                       key={social.label}
                       href={social.url}
                       target="_blank"
@@ -275,10 +277,10 @@ export default function Contact() {
                         <div style={{ fontFamily: "var(--font-body)", fontSize: "0.85rem", fontWeight: 500, color: "var(--color-text-primary)" }}>{social.label}</div>
                         <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "var(--color-text-muted)" }}>{social.username}</div>
                       </div>
-                    </motion.a>
+                    </M.a>
                   ))}
                 </div>
-              </motion.div>
+              </M.div>
             </div>
           </div>
         </div>

@@ -46,8 +46,8 @@ export default function Header() {
           right: 0,
           zIndex: 100,
           backgroundColor: scrolled ? "rgba(11, 16, 36, 0.75)" : "transparent",
-          backdropFilter: scrolled ? "blur(24px) saturate(140%)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(24px) saturate(140%)" : "none",
+          backdropFilter: scrolled ? "blur(12px) saturate(130%)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(12px) saturate(130%)" : "none",
           borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.06)" : "1px solid transparent",
           boxShadow: scrolled ? "0 4px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04)" : "none",
           transition: "all 700ms cubic-bezier(0.16, 1, 0.3, 1)",
@@ -74,7 +74,7 @@ export default function Header() {
             }}
           >
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="Komron Xidoyatov"
               width="38"
               height="38"
@@ -166,8 +166,8 @@ export default function Header() {
           inset: 0,
           zIndex: 99,
           backgroundColor: "rgba(11, 16, 36, 0.96)",
-          backdropFilter: "blur(40px)",
-          WebkitBackdropFilter: "blur(40px)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

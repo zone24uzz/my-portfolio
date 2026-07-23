@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { useMotion } from "../utils/motion";
 import { ArrowRight, CaretRight, Sparkle, X } from "@phosphor-icons/react";
 import MagneticButton from "../components/MagneticButton";
 
@@ -9,21 +9,21 @@ const featuredProjects = [
   {
     titleKey: "projects.abcAutoTitle",
     categoryKey: "projects.webApp",
-    image: "/images/project-abcauto.png",
+    image: "/images/project-abcauto.webp",
     link: "https://abc-auto-xidoyatovvv.vercel.app/",
     tags: ["React", "TailwindCSS", "JavaScript"],
   },
   {
     titleKey: "projects.sansiroTitle",
     categoryKey: "projects.webApp",
-    image: "/images/project-sansiro.png",
+    image: "/images/project-sansiro.webp",
     link: "https://sansiro-online-shop.vercel.app/",
     tags: ["React", "TailwindCSS", "JavaScript"],
   },
   {
     titleKey: "projects.autokranTitle",
     categoryKey: "projects.webApp",
-    image: "/images/project-autokran.png",
+    image: "/images/project-autokran.webp",
     link: "https://www.autokran.uz/",
     tags: ["React", "TailwindCSS", "JavaScript", "SEO"],
   },
@@ -42,6 +42,12 @@ export default function Home() {
   const statsRef = useRef(null);
   const heroRef = useRef(null);
   const [lightboxImage, setLightboxImage] = useState(null);
+
+  const { motion, useScroll, useTransform, AnimatePresence } = useMotion();
+  const M = motion || { div: 'div', h1: 'h1', p: 'p', span: 'span', img: 'img' };
+
+  // useScroll + useTransform for parallax on hero images
+  // Note: hero-visual is display:none on mobile (<1024px) so parallax only runs on desktop
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -99,7 +105,7 @@ export default function Home() {
             pointerEvents: "none",
           }}
         >
-          <motion.div
+          <M.div
             animate={{ scale: [1, 1.05, 1], opacity: [0.08, 0.12, 0.08] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             style={{
@@ -112,7 +118,7 @@ export default function Home() {
               background: "radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 70%)",
             }}
           />
-          <motion.div
+          <M.div
             animate={{ scale: [1, 1.08, 1], opacity: [0.05, 0.1, 0.05] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             style={{
@@ -127,11 +133,11 @@ export default function Home() {
           />
         </div>
 
-        <motion.div className="section-container" style={{ width: "100%", zIndex: 1, y: heroContentY }}>
+        <M.div className="section-container" style={{ width: "100%", zIndex: 1, y: heroContentY }}>
           <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4xl)", alignItems: "center" }}>
             {/* Left Content */}
             <div>
-              <motion.div
+              <M.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -164,9 +170,9 @@ export default function Home() {
                 <span style={{ fontFamily: "var(--font-body)", fontSize: "0.85rem", color: "var(--color-accent-400)", fontWeight: 500 }}>
                   {t("hero.forNewProjects")}
                 </span>
-              </motion.div>
+              </M.div>
 
-              <motion.h1
+              <M.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -175,18 +181,18 @@ export default function Home() {
                 {t("hero.titleLine1")}
                 <br />
                 <span className="gradient-text">{t("hero.titleHighlight")}</span>
-              </motion.h1>
+              </M.h1>
 
-              <motion.p
+              <M.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 style={{ fontSize: "1.1rem", marginBottom: "var(--space-2xl)", maxWidth: "520px" }}
               >
                 {t("hero.subtitle")}
-              </motion.p>
+              </M.p>
 
-              <motion.div
+              <M.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -204,11 +210,11 @@ export default function Home() {
                     {t("hero.getInTouch")}
                   </Link>
                 </MagneticButton>
-              </motion.div>
+              </M.div>
             </div>
 
             {/* Right - Hero Visual with Photos */}
-            <motion.div
+            <M.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -222,7 +228,7 @@ export default function Home() {
                   position: "relative",
                 }}
               >
-                <motion.div
+                <M.div
                   whileHover={{ scale: 1.02, y: -4 }}
                   onClick={() => openLightbox("/images/IMG_1353.jpg", "Komron Khidoyatov — Frontend Developer from Tashkent, Uzbekistan")}
                   style={{
@@ -235,8 +241,8 @@ export default function Home() {
                     cursor: "pointer",
                   }}
                 >
-                  <motion.img
-                    src="/images/IMG_1353.jpg"
+                  <M.img
+                    src="/images/IMG_1353.webp"
                     alt="Komron Khidoyatov — Frontend Developer from Tashkent, Uzbekistan"
                     width="600"
                     height="800"
@@ -249,9 +255,9 @@ export default function Home() {
                       y: imgParallax,
                     }}
                   />
-                </motion.div>
+                </M.div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-md)" }}>
-                  <motion.div
+                  <M.div
                     whileHover={{ scale: 1.02, y: -4 }}
                     onClick={() => openLightbox("/images/IMG_1350.jpg", "Komron Xidoyatov — Frontend Developer Portfolio")}
                     style={{
@@ -264,8 +270,8 @@ export default function Home() {
                       cursor: "pointer",
                     }}
                   >
-                    <motion.img
-                      src="/images/IMG_1350.jpg"
+                    <M.img
+                      src="/images/IMG_1350.webp"
                       alt="Komron Xidoyatov — Frontend Developer Portfolio"
                       width="400"
                       height="400"
@@ -277,8 +283,8 @@ export default function Home() {
                         y: img2Parallax,
                       }}
                     />
-                  </motion.div>
-                  <motion.div
+                  </M.div>
+                  <M.div
                     whileHover={{ scale: 1.02, y: -4 }}
                     onClick={() => openLightbox("/images/IMG_0925.jpg", "Komron Xidoyatov — Web Developer in Tashkent")}
                     style={{
@@ -291,8 +297,8 @@ export default function Home() {
                       cursor: "pointer",
                     }}
                   >
-                    <motion.img
-                      src="/images/IMG_0925.jpg"
+                    <M.img
+                      src="/images/IMG_0925.webp"
                       alt="Komron Xidoyatov — Web Developer in Tashkent"
                       width="400"
                       height="225"
@@ -304,12 +310,12 @@ export default function Home() {
                         y: imgParallax,
                       }}
                     />
-                  </motion.div>
+                  </M.div>
                 </div>
               </div>
-            </motion.div>
+            </M.div>
           </div>
-        </motion.div>
+        </M.div>
       </section>
 
       {/* Stats Section */}
@@ -317,7 +323,7 @@ export default function Home() {
         <div className="section-container">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "var(--space-xl)" }} className="stats-grid">
             {stats.map((stat, i) => (
-              <motion.div
+              <M.div
                 key={stat.labelKey}
                 initial={{ opacity: 0, y: 30 }}
                 animate={statsVisible ? { opacity: 1, y: 0 } : {}}
@@ -343,7 +349,7 @@ export default function Home() {
                 <div style={{ fontFamily: "var(--font-body)", fontSize: "0.85rem", color: "var(--color-text-muted)", fontWeight: 500 }}>
                   {t(stat.labelKey)}
                 </div>
-              </motion.div>
+              </M.div>
             ))}
           </div>
         </div>
@@ -352,7 +358,7 @@ export default function Home() {
       {/* Featured Work */}
       <section className="section-padding">
         <div className="section-container">
-          <motion.div
+          <M.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -396,11 +402,11 @@ export default function Home() {
               {t("featured.viewAll")}
               <CaretRight size={14} weight="bold" />
             </Link>
-          </motion.div>
+          </M.div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "var(--space-xl)" }} className="projects-grid-home">
             {featuredProjects.map((project, i) => (
-              <motion.div
+              <M.div
                 key={project.titleKey}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -411,7 +417,7 @@ export default function Home() {
               >
                 <a href={project.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}>
                   <div style={{ aspectRatio: "16/10", overflow: "hidden", backgroundColor: "var(--color-bg-tertiary)" }}>
-                    <motion.img
+                    <M.img
                       src={project.image}
                       alt={t(project.titleKey)}
                       loading="lazy"
@@ -439,7 +445,7 @@ export default function Home() {
                     </div>
                   </div>
                 </a>
-              </motion.div>
+              </M.div>
             ))}
           </div>
         </div>
@@ -448,7 +454,7 @@ export default function Home() {
       {/* CTA Section */}
       <section style={{ padding: "var(--space-5xl) 0", borderTop: "1px solid var(--color-border)" }}>
         <div className="section-container">
-          <motion.div
+          <M.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -456,21 +462,21 @@ export default function Home() {
             style={{ borderRadius: "var(--radius-2xl)", backgroundColor: "var(--color-bg-secondary)", border: "1px solid var(--color-border)", padding: "var(--space-4xl) var(--space-3xl)", textAlign: "center", position: "relative", overflow: "hidden" }}
             className="cta-section"
           >
-            <motion.div
+            <M.div
               animate={{ scale: [1, 1.1, 1], opacity: [0.06, 0.1, 0.06] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "400px", height: "400px", borderRadius: "50%",              background: "radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 70%)", pointerEvents: "none" }}
             />
 
             <div style={{ position: "relative", zIndex: 1 }}>
-              <motion.div
+              <M.div
                 initial={{ rotate: -30, opacity: 0 }}
                 whileInView={{ rotate: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
               >
                 <Sparkle size={32} weight="fill" style={{ color: "var(--color-accent-400)", marginBottom: "var(--space-lg)" }} />
-              </motion.div>
+              </M.div>
               <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)", marginBottom: "var(--space-lg)" }}>
                 {t("cta.titleLine1")}
                 <br />
@@ -484,14 +490,14 @@ export default function Home() {
                 <ArrowRight size={18} weight="bold" />
               </Link>
             </div>
-          </motion.div>
+          </M.div>
         </div>
       </section>
 
       {/* Lightbox */}
       <AnimatePresence>
         {lightboxImage && (
-          <motion.div
+          <M.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -545,7 +551,7 @@ export default function Home() {
               <X size={20} weight="bold" />
             </button>
 
-            <motion.img
+            <M.img
               key={lightboxImage.src}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -564,7 +570,7 @@ export default function Home() {
                 userSelect: "none",
               }}
             />
-          </motion.div>
+          </M.div>
         )}
       </AnimatePresence>
 

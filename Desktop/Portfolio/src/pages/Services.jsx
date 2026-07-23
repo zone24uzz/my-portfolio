@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "motion/react";
+import { useMotion } from "../utils/motion";
 import {
   Code,
   Palette,
@@ -32,6 +32,8 @@ const processSteps = [
 
 export default function Services() {
   const { t } = useTranslation();
+  const { motion } = useMotion();
+  const M = motion || { div: 'div', span: 'span' };
   const [visibleSections, setVisibleSections] = useState({});
   const sectionRefs = useRef({});
 
@@ -60,17 +62,17 @@ export default function Services() {
     <main>
       {/* Hero */}
       <section style={{ paddingTop: "140px", paddingBottom: "var(--space-4xl)", position: "relative", overflow: "hidden" }}>
-        <motion.div
+        <M.div
           animate={{ scale: [1, 1.05, 1], opacity: [0.04, 0.08, 0.04] }}
           transition={{ duration: 8, repeat: Infinity }}
           style={{ position: "absolute", top: "-10%", left: "-5%", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%)", pointerEvents: "none" }}
         />
         <div className="section-container" style={{ position: "relative", zIndex: 1 }}>
-          <motion.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="section-label">
+          <M.span initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="section-label">
             {t("services.label")}
-          </motion.span>
+          </M.span>
           <div className="services-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4xl)", alignItems: "center" }}>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+            <M.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
               <h1 style={{ marginBottom: "var(--space-lg)" }}>
                 {t("services.title")} <span className="gradient-text">{t("services.titleHighlight")}</span>
               </h1>
@@ -83,8 +85,8 @@ export default function Services() {
                   <ArrowRight size={18} weight="bold" />
                 </Link>
               </MagneticButton>
-            </motion.div>
-            <motion.div
+            </M.div>
+            <M.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
@@ -94,7 +96,7 @@ export default function Services() {
               {services.slice(0, 4).map((service, i) => {
                 const IconComponent = service.icon;
                 return (
-                  <motion.div
+                  <M.div
                     key={service.titleKey}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -114,10 +116,10 @@ export default function Services() {
                     <span style={{ fontFamily: "var(--font-heading)", fontSize: "0.75rem", fontWeight: 600, color: "var(--color-text-primary)", letterSpacing: "-0.01em" }}>
                       {t(service.titleKey)}
                     </span>
-                  </motion.div>
+                  </M.div>
                 );
               })}
-            </motion.div>
+            </M.div>
           </div>
         </div>
       </section>
@@ -125,7 +127,7 @@ export default function Services() {
       {/* Services Grid */}
       <section ref={(el) => (sectionRefs.current.services = el)} className="section-padding" style={{ borderTop: "1px solid var(--color-border)" }}>
         <div className="section-container">
-          <motion.div
+          <M.div
             initial={{ opacity: 0, y: 20 }}
             animate={visibleSections.services ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
@@ -136,13 +138,13 @@ export default function Services() {
               {t("services.title")} <span className="gradient-text">{t("services.titleHighlight")}</span>
             </h2>
             <p style={{ fontSize: "0.95rem", lineHeight: 1.8 }}>{t("services.subtitle")}</p>
-          </motion.div>
+          </M.div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "var(--space-xl)" }} className="services-grid">
             {services.map((service, i) => {
               const IconComponent = service.icon;
               return (
-                <motion.div
+                <M.div
                   key={service.titleKey}
                   initial={{ opacity: 0, y: 30 }}
                   animate={visibleSections.services ? { opacity: 1, y: 0 } : {}}
@@ -156,7 +158,7 @@ export default function Services() {
                     transition: "border-color 0.4s",
                   }}
                 >
-                  <motion.div
+                  <M.div
                     whileHover={{ rotate: [0, -10, 10, 0] }}
                     transition={{ duration: 0.5 }}
                     style={{
@@ -171,12 +173,12 @@ export default function Services() {
                     }}
                   >
                     <IconComponent size={24} weight="bold" style={{ color: "var(--color-text-primary)" }} />
-                  </motion.div>
+                  </M.div>
                   <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1.1rem", fontWeight: 600, color: "var(--color-text-primary)", marginBottom: "var(--space-sm)", letterSpacing: "-0.02em" }}>
                     {t(service.titleKey)}
                   </h3>
                   <p style={{ fontSize: "0.85rem", lineHeight: 1.7 }}>{t(service.descKey)}</p>
-                </motion.div>
+                </M.div>
               );
             })}
           </div>
@@ -186,7 +188,7 @@ export default function Services() {
       {/* Process */}
       <section ref={(el) => (sectionRefs.current.process = el)} className="section-padding" style={{ borderTop: "1px solid var(--color-border)" }}>
         <div className="section-container">
-          <motion.div
+          <M.div
             initial={{ opacity: 0, y: 20 }}
             animate={visibleSections.process ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
@@ -196,21 +198,21 @@ export default function Services() {
             <h2 style={{ maxWidth: "480px", margin: "0 auto" }}>
               {t("services.process")}
             </h2>
-          </motion.div>
+          </M.div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "var(--space-xl)", position: "relative" }} className="process-grid">
             {/* Connector line */}
             <div style={{ position: "absolute", top: "32px", left: "8%", right: "8%", height: "1px", background: "linear-gradient(90deg, var(--color-accent-400), var(--color-accent-500))", opacity: 0.2, pointerEvents: "none" }} className="process-connector" />
 
             {processSteps.map((step, i) => (
-              <motion.div
+              <M.div
                 key={step.step}
                 initial={{ opacity: 0, y: 30 }}
                 animate={visibleSections.process ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 style={{ textAlign: "center", position: "relative" }}
               >
-                <motion.div
+                <M.div
                   initial={{ scale: 0 }}
                   animate={visibleSections.process ? { scale: 1 } : {}}
                   transition={{ duration: 0.5, delay: i * 0.12 + 0.2, ease: [0.34, 1.56, 0.64, 1] }}
@@ -232,14 +234,14 @@ export default function Services() {
                   }}
                 >
                   {step.step}
-                </motion.div>
+                </M.div>
                 <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "1rem", fontWeight: 600, color: "var(--color-text-primary)", marginBottom: "var(--space-sm)", letterSpacing: "-0.02em" }}>
                   {t(step.titleKey)}
                 </h3>
                 <p style={{ fontSize: "0.85rem", lineHeight: 1.7, maxWidth: "240px", margin: "0 auto" }}>
                   {t(step.descKey)}
                 </p>
-              </motion.div>
+              </M.div>
             ))}
           </div>
         </div>
@@ -248,7 +250,7 @@ export default function Services() {
       {/* CTA */}
       <section className="section-padding" style={{ borderTop: "1px solid var(--color-border)" }}>
         <div className="section-container">
-          <motion.div
+          <M.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -263,15 +265,15 @@ export default function Services() {
               overflow: "hidden",
             }}
           >
-            <motion.div
+            <M.div
               animate={{ scale: [1, 1.1, 1], opacity: [0.06, 0.1, 0.06] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "400px", height: "400px", borderRadius: "50%", background: "radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 70%)", pointerEvents: "none" }}
             />
             <div style={{ position: "relative", zIndex: 1 }}>
-              <motion.div initial={{ rotate: -30, opacity: 0 }} whileInView={{ rotate: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}>
+              <M.div initial={{ rotate: -30, opacity: 0 }} whileInView={{ rotate: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}>
                 <Sparkle size={32} weight="fill" style={{ color: "var(--color-accent-400)", marginBottom: "var(--space-lg)" }} />
-              </motion.div>
+              </M.div>
               <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", marginBottom: "var(--space-md)" }}>
                 {t("services.cta")}
               </h2>
@@ -283,7 +285,7 @@ export default function Services() {
                 <ArrowRight size={18} weight="bold" />
               </Link>
             </div>
-          </motion.div>
+          </M.div>
         </div>
       </section>
 
