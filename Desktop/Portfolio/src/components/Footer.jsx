@@ -18,6 +18,7 @@ const socialLinks = [
 const footerLinks = [
   { labelKey: "nav.home", path: "/" },
   { labelKey: "nav.about", path: "/about" },
+  { labelKey: "nav.services", path: "/services" },
   { labelKey: "nav.projects", path: "/projects" },
   { labelKey: "nav.experience", path: "/experience" },
   { labelKey: "nav.contact", path: "/contact" },
@@ -273,14 +274,90 @@ export default function Footer() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .footer-grid {
             grid-template-columns: 1fr !important;
             gap: var(--space-2xl) !important;
           }
+          .footer-grid > div:first-child {
+            max-width: 500px;
+          }
+          .footer-grid > div:last-child {
+            grid-row: auto;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .footer-grid {
+            gap: var(--space-2xl) !important;
+            margin-bottom: var(--space-3xl) !important;
+          }
+          .footer-grid > div:first-child {
+            max-width: 100%;
+          }
           .footer-bottom {
-            flex-direction: column;
-            text-align: center;
+            flex-direction: column !important;
+            text-align: center !important;
+            justify-content: center !important;
+          }
+          .footer-bottom p {
+            font-size: 0.75rem !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          footer .section-padding {
+            padding: var(--space-3xl) 0 var(--space-2xl) !important;
+          }
+          footer .footer-grid > div:first-child > a {
+            justify-content: center;
+          }
+          footer .footer-grid > div:first-child > a span {
+            font-size: 1.1rem !important;
+          }
+          footer .footer-grid > div:first-child > a img {
+            height: 36px !important;
+            width: 36px !important;
+          }
+          footer .footer-grid > div:first-child > p {
+            text-align: center !important;
+            max-width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+          footer .footer-grid > div:first-child > div {
+            justify-content: center !important;
+            flex-wrap: wrap !important;
+          }
+          footer .footer-grid > div h4 {
+            text-align: center !important;
+          }
+          footer .footer-grid > div nav {
+            align-items: center !important;
+          }
+          footer .footer-grid > div p {
+            text-align: center !important;
+          }
+          footer .footer-grid > div:last-child a[href="/contact"] {
+            justify-content: center !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          footer .footer-grid > div:first-child > a img {
+            height: 30px !important;
+            width: 30px !important;
+          }
+          footer .footer-grid > div:first-child > a span {
+            font-size: 1rem !important;
+          }
+          footer .footer-grid > div:first-child > div a {
+            width: 34px !important;
+            height: 34px !important;
+          }
+          footer .footer-grid > div:first-child > div a svg {
+            width: 15px !important;
+            height: 15px !important;
           }
         }
       `}</style>

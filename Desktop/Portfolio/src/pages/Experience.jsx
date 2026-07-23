@@ -178,6 +178,7 @@ export default function Experience() {
       <style>{`
         @media (max-width: 1024px) { .exp-hero-grid { grid-template-columns: 1fr !important; } .exp-ctas { justify-content: flex-start !important; } }
         @media (max-width: 768px) { .fun-facts-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 480px) { .fun-facts-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-md) !important; } }
       `}</style>
     </main>
   );

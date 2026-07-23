@@ -122,7 +122,7 @@ export default function About() {
               style={{ position: "relative", display: "flex", justifyContent: "center" }}
             >
               <div style={{ position: "relative", width: "100%", maxWidth: "420px", aspectRatio: "3/4", borderRadius: "var(--radius-2xl)", overflow: "hidden", border: "1px solid var(--color-border)", backgroundColor: "var(--color-bg-secondary)", boxShadow: "var(--shadow-lg)" }}>
-                <img src="/images/IMG_1355.jpg" alt="Komron Khidoyatov — Frontend Developer Portfolio" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/images/IMG_1355.jpg" alt="Komron Khidoyatov — Frontend Developer Portfolio" loading="lazy" className="img-fade-in" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "var(--space-xl)", background: "linear-gradient(to top, rgba(11, 16, 36, 0.9), transparent)" }}>
                   <span style={{ color: "var(--color-text-primary)", fontFamily: "var(--font-mono)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.6 }}>
                     {t("about.creativeDev")}
@@ -252,6 +252,7 @@ export default function About() {
         @media (max-width: 1024px) {
           .about-hero-grid { grid-template-columns: 1fr !important; }
           .about-visual { order: -1; }
+          .about-visual > div { max-width: 320px !important; margin: 0 auto; }
           .expertise-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .skills-grid { grid-template-columns: 1fr !important; }
           .floating-badge { display: none !important; }
@@ -259,6 +260,9 @@ export default function About() {
         @media (max-width: 768px) {
           .quick-facts { grid-template-columns: 1fr !important; }
           .expertise-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .expertise-grid > div { padding: var(--space-xl) !important; }
         }
       `}</style>
     </main>

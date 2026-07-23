@@ -13,6 +13,7 @@ export default function Header() {
   const navLinks = [
     { path: "/", label: t("nav.home") },
     { path: "/about", label: t("nav.about") },
+    { path: "/services", label: t("nav.services") },
     { path: "/projects", label: t("nav.projects") },
     { path: "/experience", label: t("nav.experience") },
     { path: "/contact", label: t("nav.contact") },
@@ -38,12 +39,17 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          scrolled
-            ? "bg-[rgba(11,16,36,0.85)] backdrop-blur-2xl border-b border-[rgba(39,48,74,0.3)]"
-            : "bg-transparent"
-        }`}
         style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          backgroundColor: scrolled ? "rgba(11, 16, 36, 0.75)" : "transparent",
+          backdropFilter: scrolled ? "blur(24px) saturate(140%)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(24px) saturate(140%)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.06)" : "1px solid transparent",
+          boxShadow: scrolled ? "0 4px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04)" : "none",
           transition: "all 700ms cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       >
@@ -198,6 +204,10 @@ export default function Header() {
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
+        }
+        @media (max-width: 480px) {
+          header .section-container > a span { font-size: 1rem !important; }
+          header .section-container > a img { height: 32px !important; width: 32px !important; }
         }
       `}</style>
     </>

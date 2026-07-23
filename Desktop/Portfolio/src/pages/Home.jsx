@@ -1,8 +1,9 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { motion } from "motion/react";
-import { ArrowRight, CaretRight, Sparkle } from "@phosphor-icons/react";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { ArrowRight, CaretRight, Sparkle, X } from "@phosphor-icons/react";
+import MagneticButton from "../components/MagneticButton";
 
 const featuredProjects = [
   {
@@ -35,19 +36,29 @@ const stats = [
   { number: "8+", labelKey: "stats.techStack" },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] },
-  }),
-};
-
 export default function Home() {
   const { t } = useTranslation();
   const [statsVisible, setStatsVisible] = useState(false);
   const statsRef = useRef(null);
+  const heroRef = useRef(null);
+  const [lightboxImage, setLightboxImage] = useState(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const imgParallax = useTransform(scrollYProgress, [0, 1], [0, -45]);
+  const img2Parallax = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const heroContentY = useTransform(scrollYProgress, [0, 1], [0, -15]);
+
+  const openLightbox = useCallback((src, alt) => setLightboxImage({ src, alt }), []);
+  const closeLightbox = useCallback(() => setLightboxImage(null), []);
+
+  useEffect(() => {
+    if (!lightboxImage) return;
+    const handleKey = (e) => { if (e.key === "Escape") closeLightbox(); };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [lightboxImage, closeLightbox]);
 
   useEffect(() => {
     document.title = "Komron Khidoyatov — Frontend Developer & Web Developer from Tashkent, Uzbekistan";
@@ -70,12 +81,14 @@ export default function Home() {
     <main>
       {/* Hero Section */}
       <section
+        ref={heroRef}
         style={{
           minHeight: "100dvh",
           display: "flex",
           alignItems: "center",
           position: "relative",
           overflow: "hidden",
+          paddingTop: "80px",
         }}
       >
         <div
@@ -114,7 +127,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="section-container" style={{ width: "100%", zIndex: 1 }}>
+        <motion.div className="section-container" style={{ width: "100%", zIndex: 1, y: heroContentY }}>
           <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4xl)", alignItems: "center" }}>
             {/* Left Content */}
             <div>
@@ -180,13 +193,17 @@ export default function Home() {
                 style={{ display: "flex", gap: "var(--space-md)", flexWrap: "wrap" }}
                 className="hero-ctas"
               >
-                <Link to="/projects" className="btn-primary">
-                  {t("hero.viewWork")}
-                  <ArrowRight size={18} weight="bold" />
-                </Link>
-                <Link to="/contact" className="btn-secondary">
-                  {t("hero.getInTouch")}
-                </Link>
+                <MagneticButton>
+                  <Link to="/projects" className="btn-primary">
+                    {t("hero.viewWork")}
+                    <ArrowRight size={18} weight="bold" />
+                  </Link>
+                </MagneticButton>
+                <MagneticButton>
+                  <Link to="/contact" className="btn-secondary">
+                    {t("hero.getInTouch")}
+                  </Link>
+                </MagneticButton>
               </motion.div>
             </div>
 
@@ -207,6 +224,7 @@ export default function Home() {
               >
                 <motion.div
                   whileHover={{ scale: 1.02, y: -4 }}
+                  onClick={() => openLightbox("/images/IMG_1353.jpg", "Komron Khidoyatov — Frontend Developer from Tashkent, Uzbekistan")}
                   style={{
                     borderRadius: "var(--radius-2xl)",
                     overflow: "hidden",
@@ -214,21 +232,25 @@ export default function Home() {
                     boxShadow: "var(--shadow-lg)",
                     aspectRatio: "3/4",
                     backgroundColor: "var(--color-bg-secondary)",
+                    cursor: "pointer",
                   }}
                 >
-          <img
-            src="/images/IMG_1353.jpg"
-            alt="Komron Khidoyatov — Frontend Developer from Tashkent, Uzbekistan"
+                  <motion.img
+                    src="/images/IMG_1353.jpg"
+                    alt="Komron Khidoyatov — Frontend Developer from Tashkent, Uzbekistan"
+                    className="img-fade-in"
                     style={{
                       width: "100%",
                       height: "100%",
                       objectFit: "cover",
+                      y: imgParallax,
                     }}
                   />
                 </motion.div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-md)" }}>
                   <motion.div
                     whileHover={{ scale: 1.02, y: -4 }}
+                    onClick={() => openLightbox("/images/IMG_1350.jpg", "Komron Xidoyatov — Frontend Developer Portfolio")}
                     style={{
                       borderRadius: "var(--radius-2xl)",
                       overflow: "hidden",
@@ -236,20 +258,24 @@ export default function Home() {
                       boxShadow: "var(--shadow-lg)",
                       aspectRatio: "1/1",
                       backgroundColor: "var(--color-bg-secondary)",
+                      cursor: "pointer",
                     }}
                   >
-          <img
-            src="/images/IMG_1350.jpg"
-            alt="Komron Xidoyatov — Frontend Developer Portfolio"
+                    <motion.img
+                      src="/images/IMG_1350.jpg"
+                      alt="Komron Xidoyatov — Frontend Developer Portfolio"
+                      className="img-fade-in"
                       style={{
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
+                        y: img2Parallax,
                       }}
                     />
                   </motion.div>
                   <motion.div
                     whileHover={{ scale: 1.02, y: -4 }}
+                    onClick={() => openLightbox("/images/IMG_0925.jpg", "Komron Xidoyatov — Web Developer in Tashkent")}
                     style={{
                       borderRadius: "var(--radius-2xl)",
                       overflow: "hidden",
@@ -257,15 +283,18 @@ export default function Home() {
                       boxShadow: "var(--shadow-lg)",
                       aspectRatio: "16/9",
                       backgroundColor: "var(--color-bg-secondary)",
+                      cursor: "pointer",
                     }}
                   >
-          <img
-            src="/images/IMG_0925.jpg"
-            alt="Komron Xidoyatov — Web Developer in Tashkent"
+                    <motion.img
+                      src="/images/IMG_0925.jpg"
+                      alt="Komron Xidoyatov — Web Developer in Tashkent"
+                      className="img-fade-in"
                       style={{
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
+                        y: imgParallax,
                       }}
                     />
                   </motion.div>
@@ -273,7 +302,7 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Stats Section */}
@@ -379,6 +408,7 @@ export default function Home() {
                       src={project.image}
                       alt={t(project.titleKey)}
                       loading="lazy"
+                      className="img-fade-in"
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -449,10 +479,90 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            onClick={closeLightbox}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 9999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(11, 16, 36, 0.95)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              padding: "var(--space-xl)",
+              cursor: "zoom-out",
+            }}
+          >
+            <button
+              onClick={closeLightbox}
+              style={{
+                position: "absolute",
+                top: "20px",
+                right: "20px",
+                width: 44,
+                height: 44,
+                borderRadius: "var(--radius-full)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                backgroundColor: "rgba(255,255,255,0.06)",
+                color: "var(--color-text-primary)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                transition: "all 300ms",
+                zIndex: 1,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.12)";
+                e.currentTarget.style.borderColor = "var(--color-accent-400)";
+                e.currentTarget.style.color = "var(--color-accent-400)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+                e.currentTarget.style.color = "var(--color-text-primary)";
+              }}
+              aria-label="Close lightbox"
+            >
+              <X size={20} weight="bold" />
+            </button>
+
+            <motion.img
+              key={lightboxImage.src}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              src={lightboxImage.src}
+              alt={lightboxImage.alt}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "85vh",
+                borderRadius: "var(--radius-2xl)",
+                objectFit: "contain",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+                cursor: "default",
+                userSelect: "none",
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <style>{`
         @media (max-width: 1024px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: var(--space-3xl) !important; }
-          .hero-visual { display: none; }
+          .hero-visual { display: none !important; }
           .projects-grid-home { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 768px) {
@@ -461,6 +571,12 @@ export default function Home() {
           .hero-ctas { flex-direction: column; }
           .hero-ctas a { width: 100%; justify-content: center; }
           .section-header { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 480px) {
+          .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: var(--space-md) !important; }
+        }
+        @media (max-width: 360px) {
+          .hero-ctas a { font-size: 0.8rem !important; padding: 0.7rem 1.2rem !important; }
         }
       `}</style>
     </main>

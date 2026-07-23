@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from "motion/react";
 import {
   PaperPlaneTilt,
   GithubLogo,
-  LinkedinLogo,
-  TwitterLogo,
   EnvelopeSimple,
   MapPin,
   Phone,
@@ -289,6 +287,10 @@ export default function Contact() {
         .spinning { animation: spin 1s linear infinite; }
         @media (max-width: 1024px) { .contact-hero-grid { grid-template-columns: 1fr !important; } .contact-content-grid { grid-template-columns: 1fr !important; } }
         @media (max-width: 768px) { .form-row { grid-template-columns: 1fr !important; } }
+        @media (max-width: 480px) {
+          .contact-content-grid > div:first-child > div { padding: var(--space-xl) !important; }
+          .contact-content-grid > div:last-child > div { padding: var(--space-xl) !important; }
+        }
       `}</style>
     </main>
   );

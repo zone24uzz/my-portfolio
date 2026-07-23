@@ -66,7 +66,7 @@ export default function ProjectCard({ project, index }) {
                 objectFit: "cover",
                 transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
               }}
-              className="project-card-img"
+              className="project-card-img img-fade-in"
             />
 
             {/* Overlay on hover */}
