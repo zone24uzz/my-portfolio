@@ -246,7 +246,7 @@ export default function Home() {
                     alt="Komron Khidoyatov — Frontend Developer from Tashkent, Uzbekistan"
                     width="600"
                     height="800"
-                    fetchpriority="high"
+                    fetchPriority="high"
                     className="img-fade-in"
                     style={{
                       width: "100%",

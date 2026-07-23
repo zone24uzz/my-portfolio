@@ -1,5 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
+// ===== Synchronous device detection (runs at module init, not in effect) =====
+const isDesktopInitial =
+  typeof window !== "undefined" &&
+  window.innerWidth >= 768 &&
+  !("ontouchstart" in window) &&
+  navigator.maxTouchPoints <= 0;
+
 // ===== Fallback hooks for mobile - no scroll listeners, no animation physics =====
 const noop = () => {};
 const staticMotionValue = { get: () => 0, onChange: noop, on: noop };
@@ -28,8 +35,8 @@ const fallbackMotion = new Proxy(
 
 // ===== Context =====
 const MotionContext = createContext({
-  isDesktop: true,
-  loaded: false,
+  isDesktop: isDesktopInitial,
+  loaded: !isDesktopInitial, // mobile starts loaded
   motion: fallbackMotion,
   useScroll: fallbackUseScroll,
   useTransform: fallbackUseTransform,
@@ -43,8 +50,8 @@ let loadPromise = null;
 
 export function MotionProvider({ children }) {
   const [state, setState] = useState({
-    isDesktop: true,
-    loaded: false,
+    isDesktop: isDesktopInitial,
+    loaded: !isDesktopInitial,
     motion: fallbackMotion,
     useScroll: fallbackUseScroll,
     useTransform: fallbackUseTransform,
@@ -54,14 +61,8 @@ export function MotionProvider({ children }) {
   });
 
   useEffect(() => {
-    const isDesktop =
-      window.innerWidth >= 768 &&
-      !("ontouchstart" in window) &&
-      navigator.maxTouchPoints <= 0;
-
-    if (!isDesktop) {
-      // Mobile – never load motion
-      setState((prev) => ({ ...prev, isDesktop: false, loaded: true }));
+    if (!isDesktopInitial) {
+      // Mobile – never load motion, state stays as-is
       return;
     }
 
@@ -78,7 +79,8 @@ export function MotionProvider({ children }) {
         useScroll: mod.useScroll || fallbackUseScroll,
         useTransform: mod.useTransform || fallbackUseTransform,
         useSpring: mod.useSpring || fallbackUseSpring,
-        useAnimationControls: mod.useAnimationControls || fallbackUseAnimationControls,
+        useAnimationControls:
+          mod.useAnimationControls || fallbackUseAnimationControls,
         AnimatePresence: mod.AnimatePresence || FallbackAnimatePresence,
       });
     });
