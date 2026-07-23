@@ -4,6 +4,7 @@ import {
   GithubLogo,
   LinkedinLogo,
   TwitterLogo,
+  InstagramLogo,
   EnvelopeSimple,
   ArrowUpRight,
 } from "@phosphor-icons/react";
@@ -11,6 +12,7 @@ import {
 const socialLinks = [
   { icon: GithubLogo, label: "GitHub", url: "https://github.com" },
   { icon: LinkedinLogo, label: "LinkedIn", url: "https://linkedin.com" },
+  { icon: InstagramLogo, label: "Instagram", url: "https://instagram.com/khidoyatov.codes" },
   { icon: TwitterLogo, label: "Twitter", url: "https://twitter.com" },
   { icon: EnvelopeSimple, label: "Email", url: "mailto:xidoyatovkomron@gmail.com" },
 ];
@@ -63,6 +65,10 @@ export default function Footer() {
               <img
                 src="/logo.png"
                 alt="Komron Xidoyatov"
+                width="42"
+                height="42"
+                loading="lazy"
+                decoding="async"
                 style={{
                   height: 42,
                   width: 42,

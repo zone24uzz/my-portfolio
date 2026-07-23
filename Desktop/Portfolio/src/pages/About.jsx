@@ -29,6 +29,7 @@ const expertiseKeys = [
 
 const quickFacts = [
   { labelKey: "about.location", valueKey: "about.locationVal" },
+  { labelKey: "about.currentWork", valueKey: "about.currentWorkVal" },
   { labelKey: "about.experience", valueKey: "about.experienceVal" },
   { labelKey: "about.availability", valueKey: "about.availabilityVal" },
   { labelKey: "about.education", valueKey: "about.educationVal" },
@@ -122,7 +123,7 @@ export default function About() {
               style={{ position: "relative", display: "flex", justifyContent: "center" }}
             >
               <div style={{ position: "relative", width: "100%", maxWidth: "420px", aspectRatio: "3/4", borderRadius: "var(--radius-2xl)", overflow: "hidden", border: "1px solid var(--color-border)", backgroundColor: "var(--color-bg-secondary)", boxShadow: "var(--shadow-lg)" }}>
-                <img src="/images/IMG_1355.jpg" alt="Komron Khidoyatov — Frontend Developer Portfolio" loading="lazy" className="img-fade-in" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/images/IMG_1355.jpg" alt="Komron Khidoyatov — Frontend Developer Portfolio" loading="lazy" width="420" height="560" decoding="async" className="img-fade-in" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "var(--space-xl)", background: "linear-gradient(to top, rgba(11, 16, 36, 0.9), transparent)" }}>
                   <span style={{ color: "var(--color-text-primary)", fontFamily: "var(--font-mono)", fontSize: "0.7rem", letterSpacing: "0.1em", textTransform: "uppercase", opacity: 0.6 }}>
                     {t("about.creativeDev")}

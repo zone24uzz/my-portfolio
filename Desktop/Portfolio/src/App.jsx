@@ -1,18 +1,19 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { CaretUp } from "@phosphor-icons/react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import AnimatedPage from "./components/AnimatedPage";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Projects from "./pages/Projects";
-import Experience from "./pages/Experience";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
+
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Experience = lazy(() => import("./pages/Experience"));
+const Contact = lazy(() => import("./pages/Contact"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -107,24 +108,57 @@ function AnimatedRoutes() {
 
   return (
     <AnimatePresence mode="wait">
-      <AnimatedPage key={location.pathname}>
-        <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </AnimatedPage>
+      <div id="main-content" tabIndex="-1" style={{ outline: "none" }}>
+        <Suspense fallback={<div style={{ minHeight: "100dvh" }} />}>
+          <AnimatedPage key={location.pathname}>
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AnimatedPage>
+        </Suspense>
+      </div>
     </AnimatePresence>
+  );
+}
+
+function SkipLink() {
+  return (
+    <a
+      href="#main-content"
+      style={{
+        position: "fixed",
+        top: "-100%",
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 10000,
+        padding: "12px 24px",
+        backgroundColor: "var(--color-accent-400)",
+        color: "var(--color-bg-primary)",
+        fontFamily: "var(--font-body)",
+        fontSize: "0.9rem",
+        fontWeight: 600,
+        borderRadius: "0 0 var(--radius-md) var(--radius-md)",
+        textDecoration: "none",
+        transition: "top 300ms ease",
+      }}
+      onFocus={(e) => { e.currentTarget.style.top = "0"; }}
+      onBlur={(e) => { e.currentTarget.style.top = "-100%"; }}
+    >
+      Skip to content
+    </a>
   );
 }
 
 export default function App() {
   return (
     <Router>
+      <SkipLink />
       <ScrollProgress />
       <BackToTop />
       <div className="noise-overlay" />

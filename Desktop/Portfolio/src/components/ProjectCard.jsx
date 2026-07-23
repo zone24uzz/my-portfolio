@@ -60,6 +60,9 @@ export default function ProjectCard({ project, index }) {
               src={image || `https://picsum.photos/seed/${(resolvedTitle || "project").toLowerCase().replace(/\s+/g, "-")}/800/500`}
               alt={resolvedTitle}
               loading="lazy"
+              decoding="async"
+              width="800"
+              height="500"
               style={{
                 width: "100%",
                 height: "100%",

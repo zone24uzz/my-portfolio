@@ -238,6 +238,9 @@ export default function Home() {
                   <motion.img
                     src="/images/IMG_1353.jpg"
                     alt="Komron Khidoyatov — Frontend Developer from Tashkent, Uzbekistan"
+                    width="600"
+                    height="800"
+                    fetchpriority="high"
                     className="img-fade-in"
                     style={{
                       width: "100%",
@@ -264,6 +267,8 @@ export default function Home() {
                     <motion.img
                       src="/images/IMG_1350.jpg"
                       alt="Komron Xidoyatov — Frontend Developer Portfolio"
+                      width="400"
+                      height="400"
                       className="img-fade-in"
                       style={{
                         width: "100%",
@@ -289,6 +294,8 @@ export default function Home() {
                     <motion.img
                       src="/images/IMG_0925.jpg"
                       alt="Komron Xidoyatov — Web Developer in Tashkent"
+                      width="400"
+                      height="225"
                       className="img-fade-in"
                       style={{
                         width: "100%",
@@ -408,6 +415,8 @@ export default function Home() {
                       src={project.image}
                       alt={t(project.titleKey)}
                       loading="lazy"
+                      width="800"
+                      height="500"
                       className="img-fade-in"
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       whileHover={{ scale: 1.05 }}

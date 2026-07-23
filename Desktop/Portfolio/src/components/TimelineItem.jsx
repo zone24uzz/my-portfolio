@@ -1,7 +1,7 @@
 import { CalendarDot, Briefcase, MapPin } from "@phosphor-icons/react";
 
 export default function TimelineItem({ item, index }) {
-  const { role, company, location, period, description, achievements } = item;
+  const { role, company, companyUrl, location, period, description, achievements } = item;
 
   return (
     <div
@@ -108,7 +108,32 @@ export default function TimelineItem({ item, index }) {
                 }}
               >
                 <Briefcase size={14} weight="bold" />
-                {company}
+                {companyUrl ? (
+                  <a
+                    href={companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: "inherit",
+                      textDecoration: "none",
+                      borderBottom: "1px solid transparent",
+                      transition: "border-color 0.3s, opacity 0.3s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderBottomColor = "var(--color-accent-400)";
+                      e.currentTarget.style.opacity = "0.8";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderBottomColor = "transparent";
+                      e.currentTarget.style.opacity = "1";
+                    }}
+                  >
+                    {company}
+                    <span style={{ fontSize: "0.65rem", marginLeft: "3px", opacity: 0.6 }}>&#8599;</span>
+                  </a>
+                ) : (
+                  company
+                )}
               </span>
               {location && (
                 <span

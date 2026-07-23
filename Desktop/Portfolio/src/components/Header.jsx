@@ -76,6 +76,10 @@ export default function Header() {
             <img
               src="/logo.png"
               alt="Komron Xidoyatov"
+              width="38"
+              height="38"
+              fetchpriority="high"
+              decoding="async"
               style={{
                 height: 38,
                 width: 38,

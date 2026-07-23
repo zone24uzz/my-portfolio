@@ -18,6 +18,15 @@ export default function Experience() {
 
   const experiences = [
     {
+      roleKey: "experience.roleAidevix",
+      companyKey: "experience.companyAidevix",
+      companyUrl: "https://aidevix.uz",
+      locationKey: "experience.locAidevix",
+      periodKey: "experience.periodAidevix",
+      descKey: "experience.descAidevix",
+      achievements: ["experience.achieveAidevix1", "experience.achieveAidevix2", "experience.achieveAidevix3", "experience.achieveAidevix4", "experience.achieveAidevix5"],
+    },
+    {
       roleKey: "experience.roleProject",
       companyKey: "experience.companyProject",
       locationKey: "experience.locProject",
@@ -57,6 +66,7 @@ export default function Experience() {
   const resolveItem = (item) => ({
     role: t(item.roleKey),
     company: t(item.companyKey),
+    companyUrl: item.companyUrl || null,
     location: item.locationKey ? t(item.locationKey) : undefined,
     period: t(item.periodKey),
     description: t(item.descKey),

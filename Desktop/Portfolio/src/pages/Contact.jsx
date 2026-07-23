@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import {
   PaperPlaneTilt,
   GithubLogo,
+  InstagramLogo,
   EnvelopeSimple,
   MapPin,
   Phone,
@@ -14,6 +15,7 @@ import {
 
 const socialLinks = [
   { icon: GithubLogo, label: "GitHub", url: "https://github.com/komronkhidoyatov", username: "@komronkhidoyatov" },
+  { icon: InstagramLogo, label: "Instagram", url: "https://instagram.com/khidoyatov.codes", username: "@khidoyatov.codes" },
   { icon: EnvelopeSimple, label: "Email", url: "mailto:xidoyatovkomron@gmail.com", username: "xidoyatovkomron@gmail.com" },
   { icon: Phone, label: "Telegram", url: "https://t.me/komron_dev", username: "+998 90 999 55 26" },
 ];
